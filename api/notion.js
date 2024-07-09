@@ -8,6 +8,8 @@ module.exports = async (req, res) => {
       database_id: process.env.NOTION_DATABASE_ID,
     });
     
+    console.log(JSON.stringify(response, null, 2));
+
     const tasks = response.results.map(page => {
       const nameProperty = page.properties.Name;
       const name = nameProperty.title.length > 0 ? nameProperty.title[0].plain_text : 'Unnamed Task';
