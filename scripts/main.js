@@ -71,7 +71,7 @@ let draw;
 let taskElements = {};
 
 async function init() {
-    draw = SVG().addTo('#main-svg').size('100%', '100%');
+    draw = SVG().addTo('#main-svg').size(1920, 1080);
     loadBackground();
     loadTaskIcons();
     
@@ -89,13 +89,18 @@ async function init() {
 }
 
 function loadBackground() {
+    // First, create a purple background
+    draw.rect(1920, 1080).fill('#63699A');  // Adjust the color as needed
+
+    // Then, load the floor plan
     draw.image(SVG_URLS.background.floorPlan)
-        .size('100%', '100%')
+        .size(1561, 922)
+        .move((1920 - 1561) / 2, (1080 - 922) / 2)  // Center the floor plan
         .loaded(function(loader) {
-            console.log('Background loaded successfully');
+            console.log('Floor plan loaded successfully');
         })
         .error(function(error) {
-            console.error('Error loading background:', error);
+            console.error('Error loading floor plan:', error);
         });
 }
 
