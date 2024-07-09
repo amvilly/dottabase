@@ -75,6 +75,13 @@ async function init() {
     loadBackground();
     loadTaskIcons();
     
+    // Set all tasks to "needsDoing" by default
+    Object.keys(TASK_POSITIONS).forEach(taskName => {
+        if (taskName !== 'seedlingDONE') {
+            updateTaskStatus(taskName, 'needsDoing');
+        }
+    });
+    
     const notionData = await fetchNotionData();
     if (notionData) {
         applyNotionData(notionData);
@@ -100,7 +107,9 @@ function loadTaskIcons() {
             const image = group.image(SVG_URLS.characters[character], function(event) {
                 this.size(50, 50);  // Adjust size as needed
             });
-            image.hide(); // Hide all seedlings initially
+            if (character === 'seedlingDONE') {
+                image.hide(); // Hide seedlings initially
+            }
             return { group, image };
         });
     });
@@ -165,7 +174,9 @@ function updateTaskStatus(taskName, status) {
                 t.image.hide();
                 taskElements.seedlingDONE[index].image.show();
             } else {
-                t.image.show();
+                if (taskName !== 'seedlingDONE') {
+                    t.image.show();
+                }
                 taskElements.seedlingDONE[index].image.hide();
             }
         });
