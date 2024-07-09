@@ -128,21 +128,30 @@ function loadBackground() {
 function loadTaskIcons() {
     console.log('Loading task icons...');
 
+    const characterSizes = {
+        seedlingDONE: { width: 66, height: 82 },
+        strawberryND: { width: 64, height: 77 }, // Adjust these values as needed
+        pomegranateND: { width: 68, height: 77 }, // Adjust these values as needed
+        changeWater: { width: 199, height: 159 },
+        emptyDishwasher: { width: 197, height: 120 },
+        scoopCatLitter: { width: 353, height: 191 }
+    };
+
     // Load multi-position characters
     ['seedlingDONE', 'strawberryND', 'pomegranateND'].forEach(character => {
         console.log(`Loading ${character}...`);
         taskElements[character] = TASK_POSITIONS[character].map((pos, index) => {
-            const group = draw.group().move(pos.x, pos.y);
-            const image = group.image(SVG_URLS.characters[character], function(event) {
-                this.size(66, 82);  // Adjust size as needed
-                console.log(`${character} loaded at position ${index}`);
-            });
+            const size = characterSizes[character];
+            const image = draw.image(SVG_URLS.characters[character])
+                .size(size.width, size.height)
+                .move(pos.x, pos.y);
+            console.log(`${character} loaded at position ${index}, x: ${pos.x}, y: ${pos.y}, width: ${size.width}, height: ${size.height}`);
             if (character === 'seedlingDONE') {
                 image.hide(); // Hide seedlings initially
             } else {
                 image.show(); // Ensure other characters are visible
             }
-            return { group, image };
+            return { image };
         });
     });
 
@@ -152,33 +161,26 @@ function loadTaskIcons() {
 
         console.log(`Loading ${taskName}...`);
         const pos = TASK_POSITIONS[taskName];
-        const group = draw.group().move(pos.x, pos.y);
         
         // Load character (for cats)
         let character;
         if (['changeWater', 'emptyDishwasher', 'scoopCatLitter'].includes(taskName)) {
-            const catSizes = {
-                changeWater: { width: 199, height: 159 },
-                emptyDishwasher: { width: 197, height: 120 },
-                scoopCatLitter: { width: 353, height: 191 }
-            };
-        
-            character = group.image(SVG_URLS.characters[taskName], function(event) {
-                const size = catSizes[taskName] || { width: 50, height: 50 }; // Default size if not specified
-                this.size(size.width, size.height);
-                console.log(`${taskName} character loaded`);
-            });
+            const size = characterSizes[taskName];
+            character = draw.image(SVG_URLS.characters[taskName])
+                .size(size.width, size.height)
+                .move(pos.x, pos.y);
+            console.log(`${taskName} character loaded at x: ${pos.x}, y: ${pos.y}, width: ${size.width}, height: ${size.height}`);
             character.show(); // Ensure character is visible
         }
 
         // Load speech bubble
-        const speechBubble = group.image(SVG_URLS.bubbles[taskName], function(event) {
-            this.size(200, 65);  // Adjust size as needed
-            console.log(`${taskName} speech bubble loaded`);
-        });
+        const speechBubble = draw.image(SVG_URLS.bubbles[taskName])
+            .size(200, 65)  // Adjust size as needed
+            .move(pos.x, pos.y);
+        console.log(`${taskName} speech bubble loaded at x: ${pos.x}, y: ${pos.y}`);
         speechBubble.show(); // Ensure speech bubble is visible
 
-        taskElements[taskName] = { group, character, speechBubble };
+        taskElements[taskName] = { character, speechBubble };
     });
 
     console.log('All task icons loaded');
