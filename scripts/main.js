@@ -72,31 +72,44 @@ let taskElements = {};
 
 async function init() {
     console.log('Initializing...');
-    draw = SVG().addTo('#main-svg').size(1920, 1080);
-    draw.rect(600, 600).fill('#ff0000').move(0, 0);
-    loadBackground();
-    loadTaskIcons();
-    
-    console.log('Setting default task statuses...');
-    // Set all tasks to "needsDoing" by default
-    Object.keys(TASK_POSITIONS).forEach(taskName => {
-        if (taskName !== 'seedlingDONE') {
-            updateTaskStatus(taskName, 'needsDoing');
+    try {
+        draw = SVG().addTo('#main-svg').size(1920, 1080);
+        console.log('SVG canvas created');
+
+        loadBackground();
+        console.log('Background loaded');
+
+        // Add test rectangle
+        draw.rect(100, 100).fill('#ff0000').move(0, 0);
+        console.log('Test rectangle added');
+
+        loadTaskIcons();
+        console.log('Task icons loaded');
+
+        console.log('Setting default task statuses...');
+        // Set all tasks to "needsDoing" by default
+        Object.keys(TASK_POSITIONS).forEach(taskName => {
+            if (taskName !== 'seedlingDONE') {
+                updateTaskStatus(taskName, 'needsDoing');
+            }
+        });
+
+        console.log('Fetching Notion data...');
+        const notionData = await fetchNotionData();
+        if (notionData) {
+            console.log('Applying Notion data...');
+            applyNotionData(notionData);
+        } else {
+            console.log('No Notion data received');
         }
-    });
-    
-    console.log('Fetching Notion data...');
-    const notionData = await fetchNotionData();
-    if (notionData) {
-        console.log('Applying Notion data...');
-        applyNotionData(notionData);
-    } else {
-        console.log('No Notion data received');
+        console.log('Initialization complete');
+    } catch (error) {
+        console.error('Error during initialization:', error);
     }
-    console.log('Initialization complete');
 }
 
 function loadBackground() {
+    console.log('Loading background...');
     // First, create a purple background
     draw.rect(1920, 1080).fill('#63699A');  // Adjust the color as needed
 
@@ -104,10 +117,10 @@ function loadBackground() {
     draw.image(SVG_URLS.background.floorPlan)
         .size(1561, 922)
         .move((1920 - 1561) / 2, (1080 - 922) / 2)  // Center the floor plan
-        .loaded(function(loader) {
+        .on('load', function() {
             console.log('Floor plan loaded successfully');
         })
-        .error(function(error) {
+        .on('error', function(error) {
             console.error('Error loading floor plan:', error);
         });
 }
