@@ -79,10 +79,6 @@ async function init() {
         loadBackground();
         console.log('Background loaded');
 
-        // Add test rectangle
-        draw.rect(100, 100).fill('#ff0000').move(0, 0);
-        console.log('Test rectangle added');
-
         loadTaskIcons();
         console.log('Task icons loaded');
 
