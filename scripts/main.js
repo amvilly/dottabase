@@ -56,7 +56,7 @@ const TASK_POSITIONS = {
     emptyDishwasher: { x: 111, y: 770 },
     scoopCatLitter: { x: 614, y: 647 },
     // bubbles only
-    airOutMattress: { x: 1540, y: 390 },
+    airOutMattress: { x: 1500, y: 390 },
     countertopDeclutter: { x: 551, y: 875 },
     fridgeDeclutter: { x: 890, y: 862 },
     fuckItBucket: { x: 1046, y: 478 },
