@@ -8,20 +8,12 @@ module.exports = async (req, res) => {
       database_id: process.env.NOTION_DATABASE_ID,
     });
     
-    console.log(JSON.stringify(response, null, 2));
-
-    const tasks = response.results.map(page => {
-      const nameProperty = page.properties.Name;
-      const name = nameProperty.title.length > 0 ? nameProperty.title[0].plain_text : 'Unnamed Task';
-      
-      const redGreenProperty = page.properties['red-green'];
-      const redGreen = redGreenProperty.formula ? redGreenProperty.formula.string : 'Unknown';
-
-      return {
-        name: name,
-        'red-green': redGreen
-      };
-    });
+    const tasks = response.results.map(page => ({
+      name: page.properties.Name.title[0].plain_text,
+      'red-green': page.properties['red-green'].formula.string,
+      space: page.properties.Space.select.name,
+      lastCompleted: page.properties['Last completed'].date.start,
+    }));
 
     res.status(200).json(tasks);
   } catch (error) {
