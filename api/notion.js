@@ -1,21 +1,28 @@
 const { Client } = require('@notionhq/client');
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
-//const databaseId = process.env.NOTION_DATABASE_ID;
+const databaseId = process.env.NOTION_DATABASE_ID;
 
 module.exports = async (req, res) => {
   try {
-    // Your Notion API logic here
     const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID,
+      database_id: databaseId,
     });
     
-    const tasks = response.results.map(page => ({
-      name: page.properties.Name.title[0].plain_text,
-      'red-green': page.properties['red-green'].formula.string
-    }));
+    const tasks = response.results.map(page => {
+      const nameProperty = page.properties.Name;
+      const name = nameProperty.title.length > 0 ? nameProperty.title[0].plain_text : 'Unnamed Task';
+      
+      const redGreenProperty = page.properties['red-green'];
+      const redGreen = redGreenProperty.formula ? redGreenProperty.formula.string : 'Unknown';
 
-    res.status(200).json(response);
+      return {
+        name: name,
+        'red-green': redGreen
+      };
+    });
+
+    res.status(200).json(tasks);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: error.message });
