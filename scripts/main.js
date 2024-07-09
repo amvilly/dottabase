@@ -58,14 +58,14 @@ function loadTaskIcons() {
 
 async function fetchNotionData() {
     try {
-        const response = await fetch('YOUR_SERVERLESS_FUNCTION_URL');
-        const data = await response.json();
-        return data;
+      const response = await fetch('/api/notion');
+      const data = await response.json();
+      return data;
     } catch (error) {
-        console.error('Error fetching Notion data:', error);
-        return null;
+      console.error('Error fetching Notion data:', error);
+      return null;
     }
-}
+  }
 
 function applyNotionData(data) {
     data.forEach(item => {
