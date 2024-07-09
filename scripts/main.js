@@ -1,25 +1,25 @@
 const SVG_URLS = {
     background: {
-        floorPlan: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/background/floor%20plan.svg', 
+        floorPlan: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/background/floor%20plan.svg?token=GHSAT0AAAAAACUTUFG5AKRVZEZSEGECBSBUZUMVKLA', 
     },
     bubbles: {
-        airOutMattress: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/air%20out%20mattress.svg',
-        countertopDeclutter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/countertop%20declutter.svg',
-        fridgeDeclutter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/fridge%20declutter.svg',
-        fuckItBucket: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/fuck%20it%20bucket%20clean%20out.svg',
-        laundryClothes: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/laundry%20clothes.svg',
-        laundryLinens: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/laundry%20linens.svg',
-        resetBulletin: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/reset%20bulletin.svg',
-        tidyBathroomSink: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/tidy%20bathroom%20sink.svg',
-        wipeDownStovetop: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/wipe%20down%20stovetop.svg'
+        airOutMattress: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/air%20out%20mattress.svg?token=GHSAT0AAAAAACUTUFG43CGYU5OPODU4VQUGZUMVLHQ',
+        countertopDeclutter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/countertop%20declutter.svg?token=GHSAT0AAAAAACUTUFG463O22EVLFGZXURIKZUMVLSQ',
+        fridgeDeclutter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/fridge%20declutter.svg?token=GHSAT0AAAAAACUTUFG5622MXB2TXU5LXWL6ZUMVL4Q',
+        fuckItBucket: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/fuck%20it%20bucket%20clean%20out.svg?token=GHSAT0AAAAAACUTUFG52MGI3KQNJ2AC3RAWZUMVMFA',
+        laundryClothes: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/laundry%20clothes.svg?token=GHSAT0AAAAAACUTUFG5MUPAZ57X73NZTNQCZUMVM5A',
+        laundryLinens: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/laundry%20linens.svg?token=GHSAT0AAAAAACUTUFG4SNPW2AFJ2ETINH2OZUMVNLQ',
+        resetBulletin: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/reset%20bulletin.svg?token=GHSAT0AAAAAACUTUFG4BXCAKYU5GBXR56NMZUMVNVQ',
+        tidyBathroomSink: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/tidy%20bathroom%20sink.svg?token=GHSAT0AAAAAACUTUFG54SERSSPZO5EQ5OGUZUMVN6Q',
+        wipeDownStovetop: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/wipe%20down%20stovetop.svg?token=GHSAT0AAAAAACUTUFG54E7UVM3PVEMGA76SZUMVOIA'
     },
     characters: {
         changeWater: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/change%20water.svg',
-        emptyDishwasher: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/empty%20dishwasher.svg',
-        pomegranate: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/Pomegranate%20ND.svg',
-        scoopCatLitter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/scoop%20cat%20litter.svg',
-        seedling: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/Seedling%20DONE.svg',
-        strawberry: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/Strawberry%20ND.svg'
+        emptyDishwasher: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/empty%20dishwasher.svg?token=BJXTFNASJPFG7GXDVLFKV2LGRSWCC',
+        pomegranateND: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/Pomegranate%20ND.svg?token=BJXTFNGETMFTZVOF2GQD25DGRSWRS',
+        scoopCatLitter: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/scoop%20cat%20litter.svg?token=BJXTFNCGXCZTWP2AWYDMJATGRSWUM',
+        seedlingDONE: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/Seedling%20DONE.svg?token=BJXTFNAHNFZMMDCJOV6MVNTGRSV5C',
+        strawberryND: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/Strawberry%20ND.svg?token=BJXTFNFCYOMWDCALCWGFGS3GRSWWU'
     }
 };
 
