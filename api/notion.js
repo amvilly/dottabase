@@ -1,12 +1,11 @@
 const { Client } = require('@notionhq/client');
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
-const databaseId = process.env.NOTION_DATABASE_ID;
 
 module.exports = async (req, res) => {
   try {
     const response = await notion.databases.query({
-      database_id: databaseId,
+      database_id: process.env.NOTION_DATABASE_ID,
     });
     
     const tasks = response.results.map(page => {
