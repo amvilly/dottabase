@@ -71,10 +71,6 @@ let draw;
 let taskElements = {};
 
 function init() {
-    draw = SVG().addTo('#main-svg').size('100%', '100%');
-    
-    // Add a test rectangle
-    draw.rect(100, 100).fill('#ff0000').move(0, 0);
     
     loadBackground();
     loadTaskIcons();
