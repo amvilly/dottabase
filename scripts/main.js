@@ -1,30 +1,30 @@
 const SVG_URLS = {
     background: {
-        floorPlan: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/background/floor%20plan.svg?token=GHSAT0AAAAAACUTUFG5AKRVZEZSEGECBSBUZUMVKLA', 
+        floorPlan: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/background/floor%20plan.svg',
     },
     bubbles: {
-        airOutMattress: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/air%20out%20mattress.svg?token=GHSAT0AAAAAACUTUFG43CGYU5OPODU4VQUGZUMVLHQ',
-        countertopDeclutter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/countertop%20declutter.svg?token=GHSAT0AAAAAACUTUFG463O22EVLFGZXURIKZUMVLSQ',
-        fridgeDeclutter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/fridge%20declutter.svg?token=GHSAT0AAAAAACUTUFG5622MXB2TXU5LXWL6ZUMVL4Q',
-        fuckItBucket: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/fuck%20it%20bucket%20clean%20out.svg?token=GHSAT0AAAAAACUTUFG52MGI3KQNJ2AC3RAWZUMVMFA',
-        laundryClothes: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/laundry%20clothes.svg?token=GHSAT0AAAAAACUTUFG5MUPAZ57X73NZTNQCZUMVM5A',
-        laundryLinens: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/laundry%20linens.svg?token=GHSAT0AAAAAACUTUFG4SNPW2AFJ2ETINH2OZUMVNLQ',
-        resetBulletin: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/reset%20bulletin.svg?token=GHSAT0AAAAAACUTUFG4BXCAKYU5GBXR56NMZUMVNVQ',
-        tidyBathroomSink: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/tidy%20bathroom%20sink.svg?token=GHSAT0AAAAAACUTUFG54SERSSPZO5EQ5OGUZUMVN6Q',
-        wipeDownStovetop: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/wipe%20down%20stovetop.svg?token=GHSAT0AAAAAACUTUFG54E7UVM3PVEMGA76SZUMVOIA'
+        airOutMattress: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/air%20out%20mattress.svg',
+        countertopDeclutter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/countertop%20declutter.svg',
+        fridgeDeclutter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/fridge%20declutter.svg',
+        fuckItBucket: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/fuck%20it%20bucket%20clean%20out.svg',
+        laundryClothes: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/laundry%20clothes.svg',
+        laundryLinens: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/laundry%20linens.svg',
+        resetBulletin: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/reset%20bulletin.svg',
+        tidyBathroomSink: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/tidy%20bathroom%20sink.svg',
+        wipeDownStovetop: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/bubbles/wipe%20down%20stovetop.svg'
     },
     characters: {
         changeWater: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/change%20water.svg',
-        emptyDishwasher: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/empty%20dishwasher.svg?token=BJXTFNASJPFG7GXDVLFKV2LGRSWCC',
-        pomegranateND: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/Pomegranate%20ND.svg?token=BJXTFNGETMFTZVOF2GQD25DGRSWRS',
-        scoopCatLitter: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/scoop%20cat%20litter.svg?token=BJXTFNCGXCZTWP2AWYDMJATGRSWUM',
-        seedlingDONE: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/Seedling%20DONE.svg?token=BJXTFNAHNFZMMDCJOV6MVNTGRSV5C',
-        strawberryND: 'https://raw.githubusercontent.com/amvilly/dottabase/013c98b663a8ef62cbf77b9815ad2facc3253efa/assets/svg/characters/Strawberry%20ND.svg?token=BJXTFNFCYOMWDCALCWGFGS3GRSWWU'
+        emptyDishwasher: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/empty%20dishwasher.svg',
+        pomegranateND: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/pomegranate%20ND.svg',
+        scoopCatLitter: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/scoop%20cat%20litter.svg',
+        seedlingDONE: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/seedling%20DONE.svg',
+        strawberryND: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/characters/strawberry%20ND.svg'
     }
 };
 
 const TASK_POSITIONS = {
-    seedling: [
+    seedlingDONE: [
         { x: 783, y: 482 },  // change water
         { x: 164, y: 737 },  // empty dish
         { x: 713, y: 723 },  // scoop the poop
@@ -38,13 +38,13 @@ const TASK_POSITIONS = {
         { x: 234, y: 487 },  // tidy bathroom sink
         { x: 534, y: 869 },  // wipe down stovetop
     ],
-    strawberry: [
+    strawberryND: [
         { x: 542, y: 916 }, // countertops
         { x: 1043, y: 523 },  // fuck it bucket
         { x: 1249, y: 817 },  // laundry clothes
         { x: 1620, y: 440 }, // air out mattress
     ],
-    pomegranate: [
+    pomegranateND: [
         { x: 320, y: 919 },  // stovetop
         { x: 253, y: 505 },  // tidy bathroom sink
         { x: 1429, y: 810 },  // laundry linens
@@ -93,7 +93,7 @@ function loadBackground() {
 
 function loadTaskIcons() {
     // Load multi-position characters
-    ['seedling', 'strawberry', 'pomegranate'].forEach(character => {
+    ['seedlingDONE', 'strawberryND', 'pomegranateND'].forEach(character => {
         taskElements[character] = TASK_POSITIONS[character].map((pos, index) => {
             const group = draw.group().move(pos.x, pos.y);
             const image = group.image(SVG_URLS.characters[character], function(event) {
