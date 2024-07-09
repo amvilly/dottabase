@@ -71,10 +71,12 @@ let draw;
 let taskElements = {};
 
 async function init() {
+    console.log('Initializing...');
     draw = SVG().addTo('#main-svg').size(1920, 1080);
     loadBackground();
     loadTaskIcons();
     
+    console.log('Setting default task statuses...');
     // Set all tasks to "needsDoing" by default
     Object.keys(TASK_POSITIONS).forEach(taskName => {
         if (taskName !== 'seedlingDONE') {
@@ -82,10 +84,15 @@ async function init() {
         }
     });
     
+    console.log('Fetching Notion data...');
     const notionData = await fetchNotionData();
     if (notionData) {
+        console.log('Applying Notion data...');
         applyNotionData(notionData);
+    } else {
+        console.log('No Notion data received');
     }
+    console.log('Initialization complete');
 }
 
 function loadBackground() {
@@ -105,15 +112,21 @@ function loadBackground() {
 }
 
 function loadTaskIcons() {
+    console.log('Loading task icons...');
+
     // Load multi-position characters
     ['seedlingDONE', 'strawberryND', 'pomegranateND'].forEach(character => {
+        console.log(`Loading ${character}...`);
         taskElements[character] = TASK_POSITIONS[character].map((pos, index) => {
             const group = draw.group().move(pos.x, pos.y);
             const image = group.image(SVG_URLS.characters[character], function(event) {
-                this.size(50, 50);  // Adjust size as needed
+                this.size(66, 82);  // Adjust size as needed
+                console.log(`${character} loaded at position ${index}`);
             });
             if (character === 'seedlingDONE') {
                 image.hide(); // Hide seedlings initially
+            } else {
+                image.show(); // Ensure other characters are visible
             }
             return { group, image };
         });
@@ -123,6 +136,7 @@ function loadTaskIcons() {
     Object.keys(TASK_POSITIONS).forEach(taskName => {
         if (Array.isArray(TASK_POSITIONS[taskName])) return; // Skip multi-position characters
 
+        console.log(`Loading ${taskName}...`);
         const pos = TASK_POSITIONS[taskName];
         const group = draw.group().move(pos.x, pos.y);
         
@@ -138,16 +152,22 @@ function loadTaskIcons() {
             character = group.image(SVG_URLS.characters[taskName], function(event) {
                 const size = catSizes[taskName] || { width: 50, height: 50 }; // Default size if not specified
                 this.size(size.width, size.height);
+                console.log(`${taskName} character loaded`);
             });
+            character.show(); // Ensure character is visible
         }
 
         // Load speech bubble
         const speechBubble = group.image(SVG_URLS.bubbles[taskName], function(event) {
-            this.size(100, 50);  // Adjust size as needed
+            this.size(200, 65);  // Adjust size as needed
+            console.log(`${taskName} speech bubble loaded`);
         });
+        speechBubble.show(); // Ensure speech bubble is visible
 
         taskElements[taskName] = { group, character, speechBubble };
     });
+
+    console.log('All task icons loaded');
 }
 
 async function fetchNotionData() {
