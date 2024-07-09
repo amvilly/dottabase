@@ -115,8 +115,15 @@ function loadTaskIcons() {
         // Load character (for cats)
         let character;
         if (['changeWater', 'emptyDishwasher', 'scoopCatLitter'].includes(taskName)) {
+            const catSizes = {
+                changeWater: { width: 199, height: 159 },
+                emptyDishwasher: { width: 197, height: 120 },
+                scoopCatLitter: { width: 353, height: 191 }
+            };
+        
             character = group.image(SVG_URLS.characters[taskName], function(event) {
-                this.size(50, 50);  // Adjust size as needed
+                const size = catSizes[taskName] || { width: 50, height: 50 }; // Default size if not specified
+                this.size(size.width, size.height);
             });
         }
 
