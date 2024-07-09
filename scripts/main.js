@@ -71,7 +71,7 @@ let draw;
 let taskElements = {};
 
 function init() {
-    draw = SVG().addTo('#main-svg').size('100%', '100%');
+    
     loadBackground();
     loadTaskIcons();
 }
@@ -142,9 +142,9 @@ function updateTaskStatus(taskName, status) {
     if (Array.isArray(task)) {
         // Handle multi-position characters (seedling, strawberry, pomegranate)
         task.forEach((t, index) => {
-            if (status === 'done' && taskName === 'seedlingDONE') {
+            if (status === 'done' && taskName === 'seedling') {
                 t.image.show();
-            } else if (status === 'needsDoing' && (taskName === 'strawberryND' || taskName === 'pomegranateND')) {
+            } else if (status === 'needsDoing' && (taskName === 'strawberry' || taskName === 'pomegranate')) {
                 t.image.show();
             } else {
                 t.image.hide();
@@ -158,7 +158,7 @@ function updateTaskStatus(taskName, status) {
             // Show seedling at this position
             const seedlingIndex = getSeedlingIndex(taskName);
             if (seedlingIndex !== -1) {
-                taskElements.seedlingDONE[seedlingIndex].image.show();
+                taskElements.seedling[seedlingIndex].image.show();
             }
         } else {
             if (task.character) task.character.show();
@@ -166,7 +166,7 @@ function updateTaskStatus(taskName, status) {
             // Hide seedling at this position
             const seedlingIndex = getSeedlingIndex(taskName);
             if (seedlingIndex !== -1) {
-                taskElements.seedlingDONE[seedlingIndex].image.hide();
+                taskElements.seedling[seedlingIndex].image.hide();
             }
         }
     }
