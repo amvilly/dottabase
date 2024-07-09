@@ -1,4 +1,3 @@
-cat > vercel.json << EOL
 {
   "version": 2,
   "builds": [
@@ -10,4 +9,3 @@ cat > vercel.json << EOL
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
-EOL
