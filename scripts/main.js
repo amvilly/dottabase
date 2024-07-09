@@ -73,6 +73,7 @@ let taskElements = {};
 async function init() {
     console.log('Initializing...');
     draw = SVG().addTo('#main-svg').size(1920, 1080);
+    draw.rect(100, 100).fill('#ff0000').move(0, 0);
     loadBackground();
     loadTaskIcons();
     
