@@ -133,7 +133,35 @@ function loadTaskIcons() {
         scoopCatLitter: { width: 353, height: 191 }
     };
 
-    // Load multi-position characters
+    // First, load all speech bubbles
+    Object.keys(TASK_POSITIONS).forEach(taskName => {
+        if (Array.isArray(TASK_POSITIONS[taskName])) return; // Skip multi-position characters
+
+        const pos = TASK_POSITIONS[taskName];
+        const speechBubble = draw.image(SVG_URLS.bubbles[taskName])
+            .size(200, 65)
+            .move(pos.x, pos.y);
+        console.log(`${taskName} speech bubble loaded at x: ${pos.x}, y: ${pos.y}`);
+        
+        if (!taskElements[taskName]) {
+            taskElements[taskName] = {};
+        }
+        taskElements[taskName].speechBubble = speechBubble;
+    });
+
+    // Then, load cat characters
+    ['changeWater', 'emptyDishwasher', 'scoopCatLitter'].forEach(taskName => {
+        const pos = TASK_POSITIONS[taskName];
+        const size = characterSizes[taskName];
+        const character = draw.image(SVG_URLS.characters[taskName])
+            .size(size.width, size.height)
+            .move(pos.x, pos.y);
+        console.log(`${taskName} character loaded at x: ${pos.x}, y: ${pos.y}`);
+        
+        taskElements[taskName].character = character;
+    });
+
+    // Load multi-position characters (fruits and seedlings)
     ['seedlingDONE', 'strawberryND', 'pomegranateND'].forEach(character => {
         console.log(`Loading ${character}...`);
         taskElements[character] = TASK_POSITIONS[character].map((pos, index) => {
@@ -141,43 +169,22 @@ function loadTaskIcons() {
             const image = draw.image(SVG_URLS.characters[character])
                 .size(size.width, size.height)
                 .move(pos.x, pos.y);
-            console.log(`${character} loaded at position ${index}, x: ${pos.x}, y: ${pos.y}, width: ${size.width}, height: ${size.height}`);
+            console.log(`${character} loaded at position ${index}, x: ${pos.x}, y: ${pos.y}`);
+            
             if (character === 'seedlingDONE') {
-                image.hide(); // Hide seedlings initially
+                image.hide();
             } else {
-                image.show(); // Ensure other characters are visible
+                image.show().forward(); // Move fruits to the front
             }
+            
             return { image };
         });
     });
 
-    // Load single-position characters and speech bubbles
-    Object.keys(TASK_POSITIONS).forEach(taskName => {
-        if (Array.isArray(TASK_POSITIONS[taskName])) return; // Skip multi-position characters
-
-        console.log(`Loading ${taskName}...`);
-        const pos = TASK_POSITIONS[taskName];
-        
-        // Load character (for cats)
-        let character;
-        if (['changeWater', 'emptyDishwasher', 'scoopCatLitter'].includes(taskName)) {
-            const size = characterSizes[taskName];
-            character = draw.image(SVG_URLS.characters[taskName])
-                .size(size.width, size.height)
-                .move(pos.x, pos.y);
-            console.log(`${taskName} character loaded at x: ${pos.x}, y: ${pos.y}, width: ${size.width}, height: ${size.height}`);
-            character.show(); // Ensure character is visible
-        }
-
-        // Load speech bubble
-        const speechBubble = draw.image(SVG_URLS.bubbles[taskName])
-            .size(200, 65)  // Adjust size as needed
-            .move(pos.x, pos.y);
-        console.log(`${taskName} speech bubble loaded at x: ${pos.x}, y: ${pos.y}`);
-        speechBubble.show(); // Ensure speech bubble is visible
-
-        taskElements[taskName] = { character, speechBubble };
-    });
+    // Move 'laundry clothes' speech bubble to the front
+    if (taskElements['laundryClothes'] && taskElements['laundryClothes'].speechBubble) {
+        taskElements['laundryClothes'].speechBubble.forward();
+    }
 
     console.log('All task icons loaded');
 }
