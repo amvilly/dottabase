@@ -191,7 +191,12 @@ function loadTaskIcons() {
 
 async function fetchNotionData() {
     try {
-      const response = await fetch('https://dottabase-8lyv7mfxd-aths-projects.vercel.app/api/notion');
+      const response = await fetch('/api/notion', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -202,7 +207,7 @@ async function fetchNotionData() {
       console.error('Error fetching Notion data:', error);
       return null;
     }
-}
+  }
 
 function applyNotionData(data) {
     data.forEach(item => {
