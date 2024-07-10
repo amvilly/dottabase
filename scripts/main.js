@@ -191,7 +191,7 @@ function loadTaskIcons() {
 
 async function fetchNotionData() {
     try {
-      const response = await fetch('https://dottabase-llvtocqk1-aths-projects.vercel.app/api/notion', {
+      const response = await fetch('https://dottabase-ihiq0yi4o-aths-projects.vercel.app/api/notion', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
