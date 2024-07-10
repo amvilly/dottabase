@@ -10,7 +10,8 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 module.exports = async (req, res) => {
   const allowedOrigins = [
     'https://dottabase.vercel.app',
-    'https://dottabase-aths-projects.vercel.app'
+    'https://dottabase-aths-projects.vercel.app',
+    'https://dottabase-git-main-aths-projects.vercel.app'
   ];
 
   console.log('Received request:', req.method, req.url);
