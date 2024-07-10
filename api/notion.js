@@ -7,8 +7,17 @@ if (!process.env.NOTION_API_KEY || !process.env.NOTION_DATABASE_ID) {
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 module.exports = async (req, res) => {
-  // Set CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow any origin
+  const allowedOrigins = [
+    'https://dottabase.vercel.app/',
+    'https://dottabase-aths-projects.vercel.app/'
+  ];
+  
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+
+  // Rest of your CORS headers
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
