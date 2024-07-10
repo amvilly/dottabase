@@ -1,3 +1,4 @@
+//main.js file
 const SVG_URLS = {
     background: {
         floorPlan: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/background/floor%20plan.svg',
@@ -191,7 +192,7 @@ function loadTaskIcons() {
 
 async function fetchNotionData() {
     try {
-      const response = await fetch('https://dottabase-aths-projects.vercel.app/api/notion', {
+      const response = await fetch('/api/notion', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
