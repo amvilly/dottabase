@@ -7,9 +7,11 @@ if (!process.env.NOTION_API_KEY || !process.env.NOTION_DATABASE_ID) {
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 module.exports = async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow any origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true);
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -35,8 +37,7 @@ module.exports = async (req, res) => {
       return {
         name: page.properties.Name.title[0].plain_text,
         'red-green': page.properties['red-green']?.formula?.string || 'unknown',
-        space: page.properties.Space?.select?.name || 'unknown',
-        lastCompleted: page.properties['Last completed']?.date?.start || 'unknown',
+        
       };
     }).filter(task => task !== null);
   
