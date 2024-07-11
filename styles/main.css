@@ -3,9 +3,8 @@ body, html {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;  /*testing this out to see if maybe it'll work better for smaller 
-    screens. Gotta troubleshoot to ensure it doesn't have an overflow larger than 10920x1080p 
-    Also gotta check that scrollbars are overlay because thats prob cuter i think idk */
+    overflow: auto;
+    overflow: overlay; /* More aesthetically pleasing overlay scrollbars if supported */
 }
 
 #app {

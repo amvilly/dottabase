@@ -196,6 +196,7 @@ async function fetchNotionData() {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          'Notion-Version': '2022-06-28'
         },
       });
       if (!response.ok) {
