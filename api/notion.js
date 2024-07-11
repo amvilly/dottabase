@@ -7,7 +7,7 @@ if (!process.env.NOTION_API_KEY || !process.env.NOTION_DATABASE_ID) {
 
 // Initialize the Notion client with custom headers
 const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
+  auth: 'secret_yi4aZxCF2fro9eQIMwXm8V3aYQssPWmxcEtAlgDQ2t4', //process.env.NOTION_API_KEY,
   notionVersion: '2022-06-28' // Replace with the actual version if needed
 });
 
@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
   try {
     console.log('Fetching data from Notion...');
     const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID,
+      database_id: 'c6366af98d2d4851beb6586c8296588d', //process.env.NOTION_DATABASE_ID,
     });
     console.log('Notion response received:', JSON.stringify(response, null, 2));
     
