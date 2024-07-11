@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@notionhq/client": "^2.2.15"
+    "@notionhq/client": "^2.2.15",
+    "cors": "^2.8.5"
   }
 }

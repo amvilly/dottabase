@@ -195,7 +195,6 @@ async function fetchNotionData() {
       const response = await fetch('/api/notion', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
           'Notion-Version': '2022-06-28'
         },
       });
