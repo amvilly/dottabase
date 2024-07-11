@@ -1,9 +1,9 @@
 //notion.js file
 const { Client } = require('@notionhq/client');
 
-if (!process.env.NOTION_API_KEY || !process.env.NOTION_DATABASE_ID) {
-  throw new Error('Missing required environment variables NOTION_API_KEY or NOTION_DATABASE_ID');
-}
+//if (!process.env.NOTION_API_KEY || !process.env.NOTION_DATABASE_ID) {
+// throw new Error('Missing required environment variables NOTION_API_KEY or NOTION_DATABASE_ID');
+//}
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
@@ -21,11 +21,10 @@ module.exports = async (req, res) => {
  // if (allowedOrigins.includes(origin)) {
  //   res.setHeader('Access-Control-Allow-Origin', origin);
  // }
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // Rest of your CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+//  res.setHeader('Access-Control-Allow-Origin', '*');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -34,7 +33,7 @@ module.exports = async (req, res) => {
   try {
     console.log('Fetching data from Notion...');
     const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID,
+      database_id: 'c6366af98d2d4851beb6586c8296588d',
     });
     console.log('Notion response received:', JSON.stringify(response, null, 2));
     
