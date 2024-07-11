@@ -8,7 +8,7 @@ if (!process.env.NOTION_API_KEY || !process.env.NOTION_DATABASE_ID) {
 // Initialize the Notion client with custom headers
 const notion = new Client({
   auth: process.env.NOTION_API_KEY,
-  notionVersion: '2022-06-28' // Replace with the actual version if needed
+  //notionVersion: '2022-06-28' // Replace with the actual version if needed
 });
 
 module.exports = async (req, res) => {
