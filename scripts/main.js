@@ -192,7 +192,7 @@ function loadTaskIcons() {
 async function fetchNotionData() {
     console.log('Fetching Notion data...');
     try {
-        const response = await fetch('/api/notion', {
+        const response = await fetch('api/notion', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer secret_yi4aZxCF2fro9eQIMwXm8V3aYQssPWmxcEtAlgDQ2t4`, // Don't hardcode in production, pass securely from the backend
