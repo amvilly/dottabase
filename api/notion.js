@@ -5,6 +5,8 @@ if (!process.env.NOTION_API_KEY) {
   throw new Error('Missing required environment variable NOTION_API_KEY');
 }
 
+console.log('Notion API Key:', process.env.NOTION_API_KEY);
+
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 module.exports = async (req, res) => {

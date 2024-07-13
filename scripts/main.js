@@ -209,7 +209,7 @@ async function fetchNotionData() {
       console.error('Error fetching Notion data:', error);
       return null;
     }
-  }
+  }  
   
 function applyNotionData(data) {
     data.forEach(item => {
