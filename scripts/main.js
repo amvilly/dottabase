@@ -193,10 +193,7 @@ async function fetchNotionData() {
     console.log('Fetching Notion data...');
     try {
       const response = await fetch('/api/notion', {
-        method: 'GET',
-        headers: {
-          'Notion-Version': '2022-06-28'
-        },
+        method: 'GET'
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
