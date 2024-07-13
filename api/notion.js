@@ -4,10 +4,6 @@ if (!process.env.NOTION_API_KEY) {
   throw new Error('Missing required environment variable NOTION_API_KEY');
 }
 
-if (!process.env.NOTION_DATABASE_ID) {
-  throw new Error('Missing required environment variable NOTION_DATABASE_ID');
-}
-
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 module.exports = async (req, res) => {
@@ -20,31 +16,25 @@ module.exports = async (req, res) => {
     return res.status(200).end();
   }
 
-  try {
-    console.log('Fetching data from Notion...');
-    const response = await notion.databases.query({
-      database_id: process.env.NOTION_DATABASE_ID,
-    });
-    console.log('Notion response received:', JSON.stringify(response, null, 2));
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed, use POST' });
+  }
 
-    if (!response.results || response.results.length === 0) {
-      console.log('No results found in Notion response');
-      return res.status(200).json([]);
+  try {
+    const { page_id, property_id } = req.body;
+
+    if (!page_id || !property_id) {
+      return res.status(400).json({ error: 'Missing required fields: page_id and property_id' });
     }
 
-    const tasks = response.results.map(page => {
-      if (!page.properties.Name || !page.properties.Name.title || page.properties.Name.title.length === 0) {
-        console.warn('Page is missing Name property:', page.id);
-        return null;
-      }
-      return {
-        name: page.properties.Name.title[0].plain_text,
-        'red-green': page.properties['red-green']?.formula?.string || 'unknown',
-      };
-    }).filter(task => task !== null);
+    console.log('Fetching page property from Notion...');
+    const response = await notion.pages.properties.retrieve({
+      page_id,
+      property_id,
+    });
 
-    console.log('Sending response:', JSON.stringify(tasks, null, 2));
-    res.status(200).json(tasks);
+    console.log('Notion response received:', JSON.stringify(response, null, 2));
+    res.status(200).json(response);
   } catch (error) {
     console.error('Error in Notion API:', error);
     res.status(500).json({ error: error.message });

@@ -91,7 +91,8 @@ async function init() {
         });
 
         console.log('Fetching Notion data...');
-        const notionData = await fetchNotionData();
+        // Fetch the actual data without hardcoding
+        const notionData = await fetchPageProperty();
         if (notionData) {
             console.log('Applying Notion data...');
             applyNotionData(notionData);
@@ -189,91 +190,82 @@ function loadTaskIcons() {
     console.log('All task icons loaded');
 }
 
-async function fetchNotionData() {
-    console.log('Fetching Notion data...');
+async function fetchPageProperty() {
+    console.log('Fetching Notion page property...');
     try {
-      const response = await fetch('dottabase/api/notion', {
-        method: 'GET'
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log('Fetched data:', data);
-      return data;
-    } catch (error) {
-      console.error('Error fetching Notion data:', error);
-      return null;
-    }
-  }
-  
-  window.addEventListener('load', () => {
-    fetchNotionData().then(data => {
-      if (data) {
-        // Process the fetched data
-      }
-    });
-  });
-      
-      window.addEventListener('load', () => {
-        fetchNotionData().then(data => {
-          if (data) {
-            // Process the fetched data
-          }
-        });
-      });
-
-function applyNotionData(data) {
-    data.forEach(item => {
-        const status = item['red-green'] === 'done' ? 'done' : 'needsDoing';
-        updateTaskStatus(item.name, status);
-    });
-}
-
-function updateTaskStatus(taskName, status) {
-    const task = taskElements[taskName];
-    if (!task) return;
-
-    if (Array.isArray(task)) {
-        // Handle multi-position characters (seedlingDONE, strawberryND, pomegranateND)
-        task.forEach((t, index) => {
-            if (status === 'done') {
-                t.image.hide();
-                taskElements.seedlingDONE[index].image.show();
-            } else {
-                if (taskName !== 'seedlingDONE') {
-                    t.image.show();
-                }
-                taskElements.seedlingDONE[index].image.hide();
-            }
-        });
-    } else {
-        // Handle single-position characters (cats) and speech bubbles
-        if (status === 'done') {
-            if (task.character) task.character.hide();
-            task.speechBubble.hide();
-            const seedlingIndex = getSeedlingIndex(taskName);
-            if (seedlingIndex !== -1) {
-                taskElements.seedlingDONE[seedlingIndex].image.show();
-            }
-        } else {
-            if (task.character) task.character.show();
-            task.speechBubble.show();
-            const seedlingIndex = getSeedlingIndex(taskName);
-            if (seedlingIndex !== -1) {
-                taskElements.seedlingDONE[seedlingIndex].image.hide();
+        const response = await fetch('/api/notion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+                body: JSON.stringify({
+                  page_id: pageId,
+                  property_id: propertyId
+                })
+              });
+              if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              const data = await response.json();
+              console.log('Fetched data:', data);
+              return data;
+            } catch (error) {
+              console.error('Error fetching Notion data:', error);
+              return null;
             }
         }
-    }
-}
-
-function getSeedlingIndex(taskName) {
-    const seedlingOrder = [
-        'changeWater', 'emptyDishwasher', 'scoopCatLitter', 'airOutMattress', 
-        'countertopDeclutter', 'fridgeDeclutter', 'fuckItBucket', 'laundryClothes', 
-        'laundryLinens', 'resetBulletin', 'tidyBathroomSink', 'wipeDownStovetop'
-    ];
-    return seedlingOrder.indexOf(taskName);
-}
-
-window.addEventListener('load', init);
+        
+        function applyNotionData(data) {
+            data.forEach(item => {
+                const status = item['red-green'] === 'done' ? 'done' : 'needsDoing';
+                updateTaskStatus(item.name, status);
+            });
+        }
+        
+        function updateTaskStatus(taskName, status) {
+            const task = taskElements[taskName];
+            if (!task) return;
+        
+            if (Array.isArray(task)) {
+                // Handle multi-position characters (seedlingDONE, strawberryND, pomegranateND)
+                task.forEach((t, index) => {
+                    if (status === 'done') {
+                        t.image.hide();
+                        taskElements.seedlingDONE[index].image.show();
+                    } else {
+                        if (taskName !== 'seedlingDONE') {
+                            t.image.show();
+                        }
+                        taskElements.seedlingDONE[index].image.hide();
+                    }
+                });
+            } else {
+                // Handle single-position characters (cats) and speech bubbles
+                if (status === 'done') {
+                    if (task.character) task.character.hide();
+                    task.speechBubble.hide();
+                    const seedlingIndex = getSeedlingIndex(taskName);
+                    if (seedlingIndex !== -1) {
+                        taskElements.seedlingDONE[seedlingIndex].image.show();
+                    }
+                } else {
+                    if (task.character) task.character.show();
+                    task.speechBubble.show();
+                    const seedlingIndex = getSeedlingIndex(taskName);
+                    if (seedlingIndex !== -1) {
+                        taskElements.seedlingDONE[seedlingIndex].image.hide();
+                    }
+                }
+            }
+        }
+        
+        function getSeedlingIndex(taskName) {
+            const seedlingOrder = [
+                'changeWater', 'emptyDishwasher', 'scoopCatLitter', 'airOutMattress', 
+                'countertopDeclutter', 'fridgeDeclutter', 'fuckItBucket', 'laundryClothes', 
+                'laundryLinens', 'resetBulletin', 'tidyBathroomSink', 'wipeDownStovetop'
+            ];
+            return seedlingOrder.indexOf(taskName);
+        }
+        
+        window.addEventListener('load', init);
