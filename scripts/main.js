@@ -195,7 +195,7 @@ async function fetchNotionData() {
         const response = await fetch('/api/notion', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
+                'Authorization': `Bearer your-hardcoded-token-here`, // Don't hardcode in production, pass securely from the backend
                 'Notion-Version': '2022-06-28'
             },
         });
