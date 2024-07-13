@@ -1,30 +1,18 @@
-//notion.js file
 const { Client } = require('@notionhq/client');
 
-//if (!process.env.NOTION_API_KEY || !process.env.NOTION_DATABASE_ID) {
-// throw new Error('Missing required environment variables NOTION_API_KEY or NOTION_DATABASE_ID');
-//}
+// Ensure the environment variable is set
+if (!process.env.NOTION_API_KEY) {
+  throw new Error('Missing required environment variable NOTION_API_KEY');
+}
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
 module.exports = async (req, res) => {
-  //const allowedOrigins = [
-  //  'https://dottabase.vercel.app',
-  //  'https://dottabase-aths-projects.vercel.app',
-  //  'https://dottabase-git-main-aths-projects.vercel.app'
-  //];
-
-  console.log('Received request:', req.method, req.url);
-  console.log('Request headers:', req.headers);  
-  
-  //const origin = req.headers.origin;
- // if (allowedOrigins.includes(origin)) {
- //   res.setHeader('Access-Control-Allow-Origin', origin);
- // }
+  // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
-//  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Adjust this as needed for security
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -50,7 +38,6 @@ module.exports = async (req, res) => {
       return {
         name: page.properties.Name.title[0].plain_text,
         'red-green': page.properties['red-green']?.formula?.string || 'unknown',
-        
       };
     }).filter(task => task !== null);
   
@@ -60,8 +47,4 @@ module.exports = async (req, res) => {
     console.error('Error in Notion API:', error);
     res.status(500).json({ error: error.message });
   }
-}; 
-
-
-
-
+};

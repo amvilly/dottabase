@@ -195,6 +195,7 @@ async function fetchNotionData() {
       const response = await fetch('/api/notion', {
         method: 'GET',
         headers: {
+          'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
           'Notion-Version': '2022-06-28'
         },
       });
@@ -209,7 +210,7 @@ async function fetchNotionData() {
       return null;
     }
   }
-
+  
 function applyNotionData(data) {
     data.forEach(item => {
         const status = item['red-green'] === 'done' ? 'done' : 'needsDoing';
