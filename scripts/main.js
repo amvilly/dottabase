@@ -1,4 +1,3 @@
-//main.js file
 const SVG_URLS = {
     background: {
         floorPlan: 'https://raw.githubusercontent.com/amvilly/dottabase/main/assets/svg/background/floor%20plan.svg',
@@ -191,26 +190,27 @@ function loadTaskIcons() {
 }
 
 async function fetchNotionData() {
+    console.log('Fetching Notion data...');
     try {
-      const response = await fetch('/api/notion', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
-          'Notion-Version': '2022-06-28'
-        },
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log('Fetched data:', data);
-      return data;
+        const response = await fetch('/api/notion', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
+                'Notion-Version': '2022-06-28'
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log('Fetched data:', data);
+        return data;
     } catch (error) {
-      console.error('Error fetching Notion data:', error);
-      return null;
+        console.error('Error fetching Notion data:', error);
+        return null;
     }
-  }  
-  
+}
+
 function applyNotionData(data) {
     data.forEach(item => {
         const status = item['red-green'] === 'done' ? 'done' : 'needsDoing';
