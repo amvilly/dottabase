@@ -4,7 +4,9 @@ if (!process.env.NOTION_API_KEY) {
   throw new Error('Missing required environment variable NOTION_API_KEY');
 }
 
-console.log('Notion API Key:', process.env.NOTION_API_KEY);
+if (!process.env.NOTION_DATABASE_ID) {
+  throw new Error('Missing required environment variable NOTION_DATABASE_ID');
+}
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
@@ -21,7 +23,7 @@ module.exports = async (req, res) => {
   try {
     console.log('Fetching data from Notion...');
     const response = await notion.databases.query({
-      database_id: 'c6366af98d2d4851beb6586c8296588d',
+      database_id: process.env.NOTION_DATABASE_ID,
     });
     console.log('Notion response received:', JSON.stringify(response, null, 2));
 

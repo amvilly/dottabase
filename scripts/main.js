@@ -192,24 +192,39 @@ function loadTaskIcons() {
 async function fetchNotionData() {
     console.log('Fetching Notion data...');
     try {
-        const response = await fetch('api/notion', {
-            method: 'GET',
-            headers: {
-                'Authorization': 'Bearer secret_yi4aZxCF2fro9eQIMwXm8V3aYQssPWmxcEtAlgDQ2t4', // Don't hardcode in production, pass securely from the backend
-                'Notion-Version': '2022-06-28'
-            },
-        });
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        console.log('Fetched data:', data);
-        return data;
+      const response = await fetch('/api/notion', {
+        method: 'GET',
+        headers: {
+          'Notion-Version': '2022-06-28'
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log('Fetched data:', data);
+      return data;
     } catch (error) {
-        console.error('Error fetching Notion data:', error);
-        return null;
+      console.error('Error fetching Notion data:', error);
+      return null;
     }
-}
+  }
+  
+  window.addEventListener('load', () => {
+    fetchNotionData().then(data => {
+      if (data) {
+        // Process the fetched data
+      }
+    });
+  });
+      
+      window.addEventListener('load', () => {
+        fetchNotionData().then(data => {
+          if (data) {
+            // Process the fetched data
+          }
+        });
+      });
 
 function applyNotionData(data) {
     data.forEach(item => {
