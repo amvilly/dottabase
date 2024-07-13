@@ -192,7 +192,7 @@ function loadTaskIcons() {
 async function fetchNotionData() {
     console.log('Fetching Notion data...');
     try {
-      const response = await fetch('/api/notion', {
+      const response = await fetch('dottabase/api/notion', {
         method: 'GET'
       });
       if (!response.ok) {
