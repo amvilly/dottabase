@@ -193,26 +193,23 @@ function loadTaskIcons() {
 
 async function fetchData() {
     try {
-      const response = await fetch('api/notion', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
+        const response = await fetch('/api/notion', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json(); // Parsing the JSON response
-      console.log('Fetched data:', data);
-  
-      // Apply the fetched data to update the task statuses
-      applyNotionData(data);
+        const data = await response.json(); // Parsing the JSON response
+        console.log('Fetched data:', data);
+        return data;
     } catch (error) {
-      console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
+        return null;
     }
-  }
-  
-  fetchData();
+}
   
   function applyNotionData(data) {
     data.forEach(item => {
