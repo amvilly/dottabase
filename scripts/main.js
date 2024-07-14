@@ -24,63 +24,68 @@ const SVG_URLS = {
 };
 
 const TASK_POSITIONS = {
-    seedlingDONE: [
-        { x: 783, y: 482 },  // change water
-        { x: 164, y: 737 },  // empty dish
-        { x: 713, y: 723 },  // scoop the poop
-        { x: 1620, y: 487 }, // air out mattress/futon
-        { x: 534, y: 869 }, // countertop
-        { x: 976, y: 906 },  // fridge
-        { x: 1077, y: 473 },  // fuck it bucket
-        { x: 1267, y: 840 },  // laundry clothes
-        { x: 1461, y: 781 },  // laundry linens
-        { x: 1338, y: 429 }, // reset bulletin
-        { x: 234, y: 487 },  // tidy bathroom sink
-        { x: 322, y: 887 },  // wipe down stovetop
+    changeWater: [
+        { x: 691, y: 439, type: 'characters', name:'changeWater' }, 
+        { x: 783, y: 482, type: 'seedlingDONE', index: 0}
     ],
-    strawberryND: [
-        { x: 1620, y: 440 }, // air out mattress
-        { x: 1043, y: 523 },  // fuck it bucket
-        { x: 1249, y: 817 },  // laundry clothes
-        { x: 542, y: 916 }, // stovetops
+    emptyDishwasher: [
+        { x: 111, y: 770, type: 'characters', name:'emptyDishwasher' }, 
+        { x: 164, y: 737, type: 'seedlingDONE', index: 1}
+
     ],
-    pomegranateND: [
-        { x: 320, y: 919 },  // countertop
-        { x: 999, y: 914 }, // fridge declutter
-        { x: 1429, y: 810 },  // laundry linens
-        { x: 1313, y: 423 },  // reset bulletin
-        { x: 253, y: 505 },  // tidy bathroom sink
+    scoopCatLitter: [
+        { x: 614, y: 647, type: 'characters', name:'scoopCatLitter' }, 
+        { x: 713, y: 723, type: 'seedlingDONE', index: 2}
     ],
-    // cats with bubbles
-    changeWater: { x: 691, y: 439 },
-    emptyDishwasher: { x: 111, y: 770 },
-    scoopCatLitter: { x: 614, y: 647 },
-    // bubbles only
-    airOutMattress: { x: 1500, y: 380 },
-    countertopDeclutter: { x: 325, y: 877 },
-    fridgeDeclutter: { x: 890, y: 862 },
-    fuckItBucket: { x: 1046, y: 478 },
-    laundryClothes: { x: 1238, y: 753 },
-    laundryLinens: { x: 1313, y: 753 },
-    resetBulletin: { x: 1227, y: 377 },
-    tidyBathroomSink: { x: 263, y: 468 },
-    wipeDownStovetop: { x: 551, y: 875 },
+    airOutMattress: [
+        { x: 1500, y: 380, type: 'bubbles', name: 'airOutMattress' },
+        { x: 1620, y: 440, type: 'strawberryND', index: 0 },
+        { x: 1620, y: 487, type: 'seedlingDONE', index: 3}
+    ],
+    fuckItBucket: [
+        { x: 1046, y: 478, type: 'bubbles', name: 'fuckItBucket' },
+        { x: 1043, y: 523, type: 'strawberryND', index: 1 },
+        { x: 1077, y: 473, type: 'seedlingDONE', index: 4}
+    ],
+    laundryClothes: [
+        { x: 1238, y: 753, type: 'bubbles', name: 'laundryClothes' },
+        { x: 1249, y: 817, type: 'strawberryND', index: 2 },
+        { x: 1267, y: 840, type: 'seedlingDONE', index: 5}
+    ],
+    wipeDownStovetop: [
+        { x: 551, y: 875, type: 'bubbles', name: 'wipeDownStovetop' },
+        { x: 542, y: 916, type: 'strawberryND', index: 3 },
+        { x: 322, y: 887, type: 'seedlingDONE', index: 6}
+    ],
+    countertopDeclutter: [
+        { x: 325, y: 877, type: 'bubbles', name: 'countertopDeclutter' },
+        { x: 320, y: 919, type: 'pomegranateND', index: 0 },
+        { x: 534, y: 869, type: 'seedlingDONE', index: 7}
+    ],
+    fridgeDeclutter: [
+        { x: 890, y: 862, type: 'bubbles', name: 'fridgeDeclutter' },
+        { x: 999, y: 914, type: 'pomegranateND', index: 1 },
+        { x: 976, y: 906, type: 'seedlingDONE', index: 8}
+    ],
+    laundryLinens: [
+        { x: 1313, y: 753, type: 'bubbles', name: 'laundryLinens' },
+        { x: 1429, y: 810, type: 'pomegranateND', index: 2 },
+        { x: 1461, y: 781, type: 'seedlingDONE', index: 9}
+
+    ],
+    resetBulletin: [
+        { x: 1227, y: 377, type: 'bubbles', name: 'resetBulletin' },
+        { x: 1313, y: 423, type: 'pomegranateND', index: 3 },
+        { x: 1338, y: 429, type: 'seedlingDONE', index: 10}
+    ],
+    tidyBathroomSink: [
+        { x: 263, y: 468, type: 'bubbles', name: 'tidyBathroomSink' },
+        { x: 253, y: 505, type: 'pomegranateND', index: 4 },
+        { x: 234, y: 487, type: 'seedlingDONE', index: 11}
+    ],
+    
 };
 
-const TASK_CHARACTERS = {
-    changeWater: 'changeWater',
-    emptyDishwasher: 'emptyDishwasher',
-    scoopCatLitter: 'scoopCatLitter',
-    airOutMattress: 'strawberryND',
-    countertopDeclutter: 'pomegranateND',
-    fridgeDeclutter: 'pomegranateND',
-    fuckItBucket: 'strawberryND',
-    laundryClothes: 'strawberryND',
-    laundryLinens: 'pomegranateND',
-    resetBulletin: 'pomegranateND',
-    tidyBathroomSink: 'pomegranateND',
-    wipeDownStovetop: 'strawberryND'
-};
 
 let draw;
 let taskElements = {};
