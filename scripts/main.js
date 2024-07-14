@@ -115,6 +115,10 @@ function updateTaskStatus(taskName, status) {
             if (status === 'done') {
                 t.image.hide();
                 console.log(`Hiding ${taskType} image at index ${index}`);
+                if (taskElements[taskName] && taskElements[taskName].speechBubble) {
+                    taskElements[taskName].speechBubble.hide();
+                    console.log(`Hiding speech bubble for ${taskName}`);
+                }
                 if (taskType === 'seedlingDONE') {
                     taskElements.seedlingDONE[index].image.show();
                     console.log(`Showing seedling at index ${index}`);
@@ -122,6 +126,10 @@ function updateTaskStatus(taskName, status) {
             } else {
                 t.image.show();
                 console.log(`Showing ${taskType} image at index ${index}`);
+                if (taskElements[taskName] && taskElements[taskName].speechBubble) {
+                    taskElements[taskName].speechBubble.show();
+                    console.log(`Showing speech bubble for ${taskName}`);
+                }
                 if (taskType === 'seedlingDONE') {
                     taskElements.seedlingDONE[index].image.hide();
                     console.log(`Hiding seedling at index ${index}`);
@@ -161,6 +169,7 @@ function updateTaskStatus(taskName, status) {
         }
     }
 }
+
 
 function getSeedlingIndex(taskName) {
     const seedlingOrder = [
