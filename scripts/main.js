@@ -105,25 +105,25 @@ function updateTaskStatus(taskName, status) {
         tasks.forEach((t, index) => {
             if (status === 'done') {
                 t.image.hide();
-                console.log(`Hiding ${taskType} image at index ${index}`);
+                console.log(`Hiding ${taskType} image at index ${index} for task ${taskName}`);
                 if (taskElements[taskName] && taskElements[taskName].speechBubble) {
                     taskElements[taskName].speechBubble.hide();
                     console.log(`Hiding speech bubble for ${taskName}`);
                 }
                 if (taskType === 'seedlingDONE') {
                     taskElements.seedlingDONE[index].image.show();
-                    console.log(`Showing seedling at index ${index}`);
+                    console.log(`Showing seedling at index ${index} for task ${taskName}`);
                 }
             } else {
                 t.image.show();
-                console.log(`Showing ${taskType} image at index ${index}`);
+                console.log(`Showing ${taskType} image at index ${index} for task ${taskName}`);
                 if (taskElements[taskName] && taskElements[taskName].speechBubble) {
                     taskElements[taskName].speechBubble.show();
                     console.log(`Showing speech bubble for ${taskName}`);
                 }
                 if (taskType === 'seedlingDONE') {
                     taskElements.seedlingDONE[index].image.hide();
-                    console.log(`Hiding seedling at index ${index}`);
+                    console.log(`Hiding seedling at index ${index} for task ${taskName}`);
                 }
             }
         });
@@ -160,6 +160,7 @@ function updateTaskStatus(taskName, status) {
         }
     }
 }
+
 
 function applyNotionData(data) {
     data.forEach(item => {
