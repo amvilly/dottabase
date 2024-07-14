@@ -82,7 +82,6 @@ const TASK_CHARACTERS = {
     wipeDownStovetop: 'strawberryND'
 };
 
-
 let draw;
 let taskElements = {};
 
@@ -169,7 +168,6 @@ function applyNotionData(data) {
         updateTaskStatus(item.name, status);
     });
 }
-
 
 function getSeedlingIndex(taskName) {
     const seedlingOrder = [
