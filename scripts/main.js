@@ -93,78 +93,48 @@ let taskElements = {};
 // Define helper functions here
 
 function updateTaskStatus(taskName, status) {
-    const taskType = TASK_CHARACTERS[taskName];
-    if (!taskType) {
-        console.log(`Task type not found for task name: ${taskName}`);
+    const taskPositions = TASK_POSITIONS[taskName];
+    if (!taskPositions) {
+        console.log(`Task positions not found for task name: ${taskName}`);
         return;
     }
 
-    const tasks = taskElements[taskType];
-    if (!tasks) {
-        console.log(`Tasks not found for task type: ${taskType}`);
-        return;
-    }
-
-    if (Array.isArray(tasks)) {
-        // Handle multi-position characters
-        tasks.forEach((t, index) => {
+    taskPositions.forEach(pos => {
+        if (pos.type === 'bubbles') {
+            const element = taskElements[taskName].speechBubble;
             if (status === 'done') {
-                t.image.hide();
-                console.log(`Hiding ${taskType} image at index ${index} for task ${taskName}`);
-                if (taskElements[taskName] && taskElements[taskName].speechBubble) {
-                    taskElements[taskName].speechBubble.hide();
-                    console.log(`Hiding speech bubble for ${taskName}`);
-                }
-                if (taskType === 'seedlingDONE') {
-                    taskElements.seedlingDONE[index].image.show();
-                    console.log(`Showing seedling at index ${index} for task ${taskName}`);
-                }
-            } else {
-                t.image.show();
-                console.log(`Showing ${taskType} image at index ${index} for task ${taskName}`);
-                if (taskElements[taskName] && taskElements[taskName].speechBubble) {
-                    taskElements[taskName].speechBubble.show();
-                    console.log(`Showing speech bubble for ${taskName}`);
-                }
-                if (taskType === 'seedlingDONE') {
-                    taskElements.seedlingDONE[index].image.hide();
-                    console.log(`Hiding seedling at index ${index} for task ${taskName}`);
-                }
-            }
-        });
-    } else {
-        // Handle single-position characters (cats) and speech bubbles
-        if (status === 'done') {
-            if (tasks.character) {
-                tasks.character.hide();
-                console.log(`Hiding character for ${taskName}`);
-            }
-            if (tasks.speechBubble) {
-                tasks.speechBubble.hide();
+                element.hide();
                 console.log(`Hiding speech bubble for ${taskName}`);
-            }
-            const seedlingIndex = getSeedlingIndex(taskName);
-            if (seedlingIndex !== -1) {
-                taskElements.seedlingDONE[seedlingIndex].image.show();
-                console.log(`Showing seedling for ${taskName} at index ${seedlingIndex}`);
-            }
-        } else {
-            if (tasks.character) {
-                tasks.character.show();
-                console.log(`Showing character for ${taskName}`);
-            }
-            if (tasks.speechBubble) {
-                tasks.speechBubble.show();
+            } else {
+                element.show();
                 console.log(`Showing speech bubble for ${taskName}`);
             }
-            const seedlingIndex = getSeedlingIndex(taskName);
-            if (seedlingIndex !== -1) {
-                taskElements.seedlingDONE[seedlingIndex].image.hide();
-                console.log(`Hiding seedling for ${taskName} at index ${seedlingIndex}`);
+        } else if (pos.type === 'characters') {
+            const element = taskElements[taskName].character;
+            if (status === 'done') {
+                element.hide();
+                console.log(`Hiding character for ${taskName}`);
+            } else {
+                element.show();
+                console.log(`Showing character for ${taskName}`);
+            }
+        } else {
+            const element = taskElements[pos.type][pos.index];
+            if (status === 'done') {
+                element.image.hide();
+                console.log(`Hiding ${pos.type} image at index ${pos.index} for task ${taskName}`);
+                taskElements['seedlingDONE'][pos.index].image.show();
+                console.log(`Showing seedling at index ${pos.index} for task ${taskName}`);
+            } else {
+                element.image.show();
+                console.log(`Showing ${pos.type} image at index ${pos.index} for task ${taskName}`);
+                taskElements['seedlingDONE'][pos.index].image.hide();
+                console.log(`Hiding seedling at index ${pos.index} for task ${taskName}`);
             }
         }
-    }
+    });
 }
+
 
 function applyNotionData(data) {
     data.forEach(item => {
@@ -260,68 +230,61 @@ function loadTaskIcons() {
 
     const characterSizes = {
         seedlingDONE: { width: 66, height: 82 },
-        strawberryND: { width: 64, height: 77 }, // Adjust these values as needed
-        pomegranateND: { width: 68, height: 77 }, // Adjust these values as needed
+        strawberryND: { width: 64, height: 77 },
+        pomegranateND: { width: 68, height: 77 },
         changeWater: { width: 199, height: 159 },
         emptyDishwasher: { width: 197, height: 120 },
         scoopCatLitter: { width: 353, height: 191 }
     };
 
-    // First, load all speech bubbles
     Object.keys(TASK_POSITIONS).forEach(taskName => {
-        if (Array.isArray(TASK_POSITIONS[taskName])) return; // Skip multi-position characters
+        const positions = TASK_POSITIONS[taskName];
+        positions.forEach(pos => {
+            if (pos.type === 'bubbles') {
+                const speechBubble = draw.image(SVG_URLS.bubbles[pos.name])
+                    .size(200, 65)
+                    .move(pos.x, pos.y);
+                console.log(`${pos.name} speech bubble loaded at x: ${pos.x}, y: ${pos.y}`);
 
-        const pos = TASK_POSITIONS[taskName];
-        const speechBubble = draw.image(SVG_URLS.bubbles[taskName])
-            .size(200, 65)
-            .move(pos.x, pos.y);
-        console.log(`${taskName} speech bubble loaded at x: ${pos.x}, y: ${pos.y}`);
-        
-        if (!taskElements[taskName]) {
-            taskElements[taskName] = {};
-        }
-        taskElements[taskName].speechBubble = speechBubble;
-    });
+                if (!taskElements[taskName]) {
+                    taskElements[taskName] = {};
+                }
+                taskElements[taskName].speechBubble = speechBubble;
+            } else if (pos.type === 'characters') {
+                const size = characterSizes[pos.name];
+                const character = draw.image(SVG_URLS.characters[pos.name])
+                    .size(size.width, size.height)
+                    .move(pos.x, pos.y);
+                console.log(`${pos.name} character loaded at x: ${pos.x}, y: ${pos.y}`);
 
-    // Then, load cat characters
-    ['changeWater', 'emptyDishwasher', 'scoopCatLitter'].forEach(taskName => {
-        const pos = TASK_POSITIONS[taskName];
-        const size = characterSizes[taskName];
-        const character = draw.image(SVG_URLS.characters[taskName])
-            .size(size.width, size.height)
-            .move(pos.x, pos.y);
-        console.log(`${taskName} character loaded at x: ${pos.x}, y: ${pos.y}`);
-        
-        taskElements[taskName].character = character;
-    });
-
-    // Load multi-position characters (fruits and seedlings)
-    ['seedlingDONE', 'strawberryND', 'pomegranateND'].forEach(character => {
-        console.log(`Loading ${character}...`);
-        taskElements[character] = TASK_POSITIONS[character].map((pos, index) => {
-            const size = characterSizes[character];
-            const image = draw.image(SVG_URLS.characters[character])
-                .size(size.width, size.height)
-                .move(pos.x, pos.y);
-            console.log(`${character} loaded at position ${index}, x: ${pos.x}, y: ${pos.y}`);
-            
-            if (character === 'seedlingDONE') {
-                image.hide();
+                if (!taskElements[taskName]) {
+                    taskElements[taskName] = {};
+                }
+                taskElements[taskName].character = character;
             } else {
-                image.show().forward(); // Move fruits to the front
+                const size = characterSizes[pos.type];
+                const image = draw.image(SVG_URLS.characters[pos.type])
+                    .size(size.width, size.height)
+                    .move(pos.x, pos.y);
+                console.log(`${pos.type} image loaded at position ${pos.index}, x: ${pos.x}, y: ${pos.y}`);
+
+                if (!taskElements[pos.type]) {
+                    taskElements[pos.type] = [];
+                }
+                taskElements[pos.type][pos.index] = { image: image };
+
+                if (pos.type === 'seedlingDONE') {
+                    image.hide();
+                } else {
+                    image.show().forward();
+                }
             }
-            
-            return { image };
         });
     });
 
-    // Move 'laundry clothes' speech bubble to the front
-    if (taskElements['laundryClothes'] && taskElements['laundryClothes'].speechBubble) {
-        taskElements['laundryClothes'].speechBubble.forward();
-    }
-
     console.log('All task icons loaded');
 }
+
 
 // Add event listener at the end
 window.addEventListener('load', init);
