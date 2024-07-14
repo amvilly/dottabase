@@ -39,13 +39,13 @@ const TASK_POSITIONS = {
         { x: 534, y: 869 },  // wipe down stovetop
     ],
     strawberryND: [
-        { x: 320, y: 919 }, // countertops
+        { x: 542, y: 916 }, // stovetops
         { x: 1043, y: 523 },  // fuck it bucket
         { x: 1249, y: 817 },  // laundry clothes
         { x: 1620, y: 440 }, // air out mattress
     ],
     pomegranateND: [
-        { x: 325, y: 877 },  // stovetop
+        { x: 320, y: 919 },  // countertop
         { x: 253, y: 505 },  // tidy bathroom sink
         { x: 1429, y: 810 },  // laundry linens
         { x: 1313, y: 423 },  // reset bulletin
