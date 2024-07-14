@@ -25,16 +25,15 @@ const SVG_URLS = {
 
 const TASK_POSITIONS = {
     changeWater: [
-        { x: 691, y: 439, type: 'characters', name:'changeWater' }, 
+        { x: 691, y: 439, type: 'characters', name: 'changeWater' }, 
         { x: 783, y: 482, type: 'seedlingDONE', index: 0}
     ],
     emptyDishwasher: [
-        { x: 111, y: 770, type: 'characters', name:'emptyDishwasher' }, 
+        { x: 111, y: 770, type: 'characters', name: 'emptyDishwasher' }, 
         { x: 164, y: 737, type: 'seedlingDONE', index: 1}
-
     ],
     scoopCatLitter: [
-        { x: 614, y: 647, type: 'characters', name:'scoopCatLitter' }, 
+        { x: 614, y: 647, type: 'characters', name: 'scoopCatLitter' }, 
         { x: 713, y: 723, type: 'seedlingDONE', index: 2}
     ],
     airOutMattress: [
@@ -71,7 +70,6 @@ const TASK_POSITIONS = {
         { x: 1313, y: 753, type: 'bubbles', name: 'laundryLinens' },
         { x: 1429, y: 810, type: 'pomegranateND', index: 2 },
         { x: 1461, y: 781, type: 'seedlingDONE', index: 9}
-
     ],
     resetBulletin: [
         { x: 1227, y: 377, type: 'bubbles', name: 'resetBulletin' },
@@ -82,9 +80,9 @@ const TASK_POSITIONS = {
         { x: 263, y: 468, type: 'bubbles', name: 'tidyBathroomSink' },
         { x: 253, y: 505, type: 'pomegranateND', index: 4 },
         { x: 234, y: 487, type: 'seedlingDONE', index: 11}
-    ],
-    
+    ]
 };
+
 
 let draw;
 let taskElements = {};
@@ -116,22 +114,28 @@ function updateTaskStatus(taskName, status) {
                 element.show();
                 console.log(`Showing character for ${taskName}`);
             }
+        } else if (pos.type === 'seedlingDONE') {
+            const element = taskElements['seedlingDONE'][pos.index];
+            if (status === 'done') {
+                element.image.show();
+                console.log(`Showing seedling at index ${pos.index} for task ${taskName}`);
+            } else {
+                element.image.hide();
+                console.log(`Hiding seedling at index ${pos.index} for task ${taskName}`);
+            }
         } else {
             const element = taskElements[pos.type][pos.index];
             if (status === 'done') {
                 element.image.hide();
                 console.log(`Hiding ${pos.type} image at index ${pos.index} for task ${taskName}`);
-                taskElements['seedlingDONE'][pos.index].image.show();
-                console.log(`Showing seedling at index ${pos.index} for task ${taskName}`);
             } else {
                 element.image.show();
                 console.log(`Showing ${pos.type} image at index ${pos.index} for task ${taskName}`);
-                taskElements['seedlingDONE'][pos.index].image.hide();
-                console.log(`Hiding seedling at index ${pos.index} for task ${taskName}`);
             }
         }
     });
 }
+
 
 function applyNotionData(data) {
     data.forEach(item => {
