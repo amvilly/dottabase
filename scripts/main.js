@@ -87,13 +87,6 @@ let draw;
 let taskElements = {};
 
 // Define helper functions here
-function applyNotionData(data) {
-    data.forEach(item => {
-        const status = item.redGreen === 'done' ? 'done' : 'needsDoing';
-        console.log(`Applying status for ${item.name}: ${status}`);
-        updateTaskStatus(item.name, status);
-    });
-}
 
 function updateTaskStatus(taskName, status) {
     const taskType = TASK_CHARACTERS[taskName];
@@ -169,7 +162,13 @@ function updateTaskStatus(taskName, status) {
     }
 }
 
-
+function applyNotionData(data) {
+    data.forEach(item => {
+        const status = item.redGreen === 'done' ? 'done' : 'needsDoing';
+        console.log(`Applying status for ${item.name}: ${status}`);
+        updateTaskStatus(item.name, status);
+    });
+}
 
 
 function getSeedlingIndex(taskName) {
