@@ -144,14 +144,7 @@ function applyNotionData(data) {
     });
 }
 
-function getSeedlingIndex(taskName) {
-    const seedlingOrder = [
-        'changeWater', 'emptyDishwasher', 'scoopCatLitter', 'airOutMattress', 
-        'countertopDeclutter', 'fridgeDeclutter', 'fuckItBucket', 'laundryClothes', 
-        'laundryLinens', 'resetBulletin', 'tidyBathroomSink', 'wipeDownStovetop'
-    ];
-    return seedlingOrder.indexOf(taskName);
-}
+
 
 async function fetchData() {
     try {
