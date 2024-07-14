@@ -57,14 +57,14 @@ const TASK_POSITIONS = {
     scoopCatLitter: { x: 614, y: 647 },
     // bubbles only
     airOutMattress: { x: 1500, y: 380 },
-    countertopDeclutter: { x: 551, y: 875 },
+    countertopDeclutter: { x: 325, y: 877 },
     fridgeDeclutter: { x: 890, y: 862 },
     fuckItBucket: { x: 1046, y: 478 },
     laundryClothes: { x: 1238, y: 753 },
     laundryLinens: { x: 1313, y: 753 },
     resetBulletin: { x: 1227, y: 377 },
     tidyBathroomSink: { x: 263, y: 468 },
-    wipeDownStovetop: { x: 325, y: 877 },
+    wipeDownStovetop: { x: 551, y: 875 },
 };
 
 const TASK_CHARACTERS = {
