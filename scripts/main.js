@@ -39,13 +39,13 @@ const TASK_POSITIONS = {
         { x: 534, y: 869 },  // wipe down stovetop
     ],
     strawberryND: [
-        { x: 542, y: 916 }, // countertops
+        { x: 320, y: 919 }, // countertops
         { x: 1043, y: 523 },  // fuck it bucket
         { x: 1249, y: 817 },  // laundry clothes
         { x: 1620, y: 440 }, // air out mattress
     ],
     pomegranateND: [
-        { x: 320, y: 919 },  // stovetop
+        { x: 325, y: 877 },  // stovetop
         { x: 253, y: 505 },  // tidy bathroom sink
         { x: 1429, y: 810 },  // laundry linens
         { x: 1313, y: 423 },  // reset bulletin
@@ -57,14 +57,14 @@ const TASK_POSITIONS = {
     scoopCatLitter: { x: 614, y: 647 },
     // bubbles only
     airOutMattress: { x: 1500, y: 380 },
-    countertopDeclutter: { x: 325, y: 877 },
+    countertopDeclutter: { x: 551, y: 875 },
     fridgeDeclutter: { x: 890, y: 862 },
     fuckItBucket: { x: 1046, y: 478 },
     laundryClothes: { x: 1238, y: 753 },
     laundryLinens: { x: 1313, y: 753 },
     resetBulletin: { x: 1227, y: 377 },
     tidyBathroomSink: { x: 263, y: 468 },
-    wipeDownStovetop: { x: 551, y: 875 },
+    wipeDownStovetop: { x: 325, y: 877 },
 };
 
 let draw;
