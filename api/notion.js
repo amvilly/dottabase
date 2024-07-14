@@ -31,7 +31,6 @@ module.exports = async (req, res) => {
 
     const results = response.results.map(page => {
       return {
-        id: page.id,
         name: page.properties.Name.title[0].text.content,
         redGreen: page.properties['red-green'].formula.string
       };
