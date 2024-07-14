@@ -161,7 +161,6 @@ function updateTaskStatus(taskName, status) {
     }
 }
 
-
 function applyNotionData(data) {
     data.forEach(item => {
         const status = item.redGreen === 'done' ? 'done' : 'needsDoing';
