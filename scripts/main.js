@@ -38,18 +38,48 @@ const TASK_POSITIONS = {
         { x: 234, y: 487 },  // tidy bathroom sink
         { x: 322, y: 887 },  // wipe down stovetop
     ],
+    strawberryND: [
+        { x: 1620, y: 440 }, // air out mattress
+        { x: 1043, y: 523 },  // fuck it bucket
+        { x: 1249, y: 817 },  // laundry clothes
+        { x: 542, y: 916 }, // stovetops
+    ],
+    pomegranateND: [
+        { x: 320, y: 919 },  // countertop
+        { x: 999, y: 914 }, // fridge declutter
+        { x: 1429, y: 810 },  // laundry linens
+        { x: 1313, y: 423 },  // reset bulletin
+        { x: 253, y: 505 },  // tidy bathroom sink
+    ],
+    // cats with bubbles
     changeWater: { x: 691, y: 439 },
     emptyDishwasher: { x: 111, y: 770 },
     scoopCatLitter: { x: 614, y: 647 },
-    airOutMattress: { x: 1500, y: 380, type: 'strawberryND', index: 0 },
-    fuckItBucket: { x: 1046, y: 478, type: 'strawberryND', index: 1 },
-    laundryClothes: { x: 1249, y: 817, type: 'strawberryND', index: 2 },
-    wipeDownStovetop: { x: 542, y: 916, type: 'strawberryND', index: 3 },
-    countertopDeclutter: { x: 320, y: 919, type: 'pomegranateND', index: 0 },
-    fridgeDeclutter: { x: 999, y: 914, type: 'pomegranateND', index: 1 },
-    laundryLinens: { x: 1429, y: 810, type: 'pomegranateND', index: 2 },
-    resetBulletin: { x: 1313, y: 423, type: 'pomegranateND', index: 3 },
-    tidyBathroomSink: { x: 253, y: 505, type: 'pomegranateND', index: 4 },
+    // bubbles only
+    airOutMattress: { x: 1500, y: 380 },
+    countertopDeclutter: { x: 325, y: 877 },
+    fridgeDeclutter: { x: 890, y: 862 },
+    fuckItBucket: { x: 1046, y: 478 },
+    laundryClothes: { x: 1238, y: 753 },
+    laundryLinens: { x: 1313, y: 753 },
+    resetBulletin: { x: 1227, y: 377 },
+    tidyBathroomSink: { x: 263, y: 468 },
+    wipeDownStovetop: { x: 551, y: 875 },
+};
+
+const TASK_CHARACTERS = {
+    changeWater: 'changeWater',
+    emptyDishwasher: 'emptyDishwasher',
+    scoopCatLitter: 'scoopCatLitter',
+    airOutMattress: 'strawberryND',
+    countertopDeclutter: 'pomegranateND',
+    fridgeDeclutter: 'pomegranateND',
+    fuckItBucket: 'strawberryND',
+    laundryClothes: 'strawberryND',
+    laundryLinens: 'pomegranateND',
+    resetBulletin: 'pomegranateND',
+    tidyBathroomSink: 'pomegranateND',
+    wipeDownStovetop: 'strawberryND'
 };
 
 let draw;
