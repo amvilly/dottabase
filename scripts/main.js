@@ -86,12 +86,10 @@ const TASK_POSITIONS = {
     
 };
 
-
 let draw;
 let taskElements = {};
 
 // Define helper functions here
-
 function updateTaskStatus(taskName, status) {
     const taskPositions = TASK_POSITIONS[taskName];
     if (!taskPositions) {
@@ -135,7 +133,6 @@ function updateTaskStatus(taskName, status) {
     });
 }
 
-
 function applyNotionData(data) {
     data.forEach(item => {
         const status = item.redGreen === 'done' ? 'done' : 'needsDoing';
@@ -143,8 +140,6 @@ function applyNotionData(data) {
         updateTaskStatus(item.name, status);
     });
 }
-
-
 
 async function fetchData() {
     try {
@@ -277,7 +272,6 @@ function loadTaskIcons() {
 
     console.log('All task icons loaded');
 }
-
 
 // Add event listener at the end
 window.addEventListener('load', init);
