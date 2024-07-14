@@ -23,6 +23,12 @@ module.exports = async (req, res) => {
   }
 
   try {
+    // Set no-cache headers
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.setHeader('Surrogate-Control', 'no-store');
+
     // Querying the Notion database
     console.log('Querying database...');
     const response = await notion.databases.query({
@@ -37,7 +43,6 @@ module.exports = async (req, res) => {
       const redGreen = page.properties['red-green'].formula.string;
 
       return {
-       // id: page.id,
         name: name,
         redGreen: redGreen
       };
