@@ -8,6 +8,7 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const databaseId = process.env.NOTION_DATABASE_ID || 'c6366af98d2d4851beb6586c8296588d';
 
 module.exports = async (req, res) => {
+  console.log(`Received request: ${req.method} ${req.url}`);
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
@@ -30,9 +31,15 @@ module.exports = async (req, res) => {
     });
 
     const results = response.results.map(page => {
+      const name = page.properties.Name.title.length > 0 
+        ? page.properties.Name.title[0].text.content 
+        : "Untitled";
+      const redGreen = page.properties['red-green'].formula.string;
+
       return {
-        name: page.properties.Name.title[0].text.content,
-        redGreen: page.properties['red-green'].formula.string
+       // id: page.id,
+        name: name,
+        redGreen: redGreen
       };
     });
     // Logging and sending the JSON response
