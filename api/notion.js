@@ -5,7 +5,7 @@ if (!process.env.NOTION_API_KEY) {
 }
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
-const databaseId = process.env.NOTION_DATABASE_ID || 'c6366af98d2d4851beb6586c8296588d';
+const databaseId = process.env.NOTION_DATABASE_ID || '3c7f9524d0b4437a9f2dbe34eafb9d6a';
 
 module.exports = async (req, res) => {
   console.log(`Received request: ${req.method} ${req.url}`);
