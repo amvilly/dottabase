@@ -29,14 +29,14 @@ const TASK_POSITIONS = {
         { x: 164, y: 737 },  // empty dish
         { x: 713, y: 723 },  // scoop the poop
         { x: 1620, y: 487 }, // air out mattress/futon
-        { x: 322, y: 887 }, // countertop
+        { x: 534, y: 869 }, // countertop
         { x: 976, y: 906 },  // fridge
         { x: 1077, y: 473 },  // fuck it bucket
         { x: 1267, y: 840 },  // laundry clothes
         { x: 1461, y: 781 },  // laundry linens
         { x: 1338, y: 429 }, // reset bulletin
         { x: 234, y: 487 },  // tidy bathroom sink
-        { x: 534, y: 869 },  // wipe down stovetop
+        { x: 322, y: 887 },  // wipe down stovetop
     ],
     strawberryND: [
         { x: 542, y: 916 }, // stovetops
