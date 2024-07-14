@@ -29,14 +29,14 @@ module.exports = async (req, res) => {
     });
 
     const results = response.results.map(page => {
-      const name = page.properties.Name.title.length > 0 
-        ? page.properties.Name.title[0].text.content 
-        : "Untitled";
+      const task = page.properties.task.rich_text.length > 0 
+        ? page.properties.task.rich_text[0].plain_text 
+        : "No task";
       const redGreen = page.properties['red-green'].formula.string;
-
+      
       return {
-        name: name,
-        redGreen: redGreen
+        task,
+        redGreen,
       };
     });
     // Logging and sending the JSON response
