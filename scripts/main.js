@@ -67,6 +67,23 @@ const TASK_POSITIONS = {
     wipeDownStovetop: { x: 325, y: 877 },
 };
 
+const TASK_CHARACTERS = {
+    airOutMattress: 'strawberryND',
+    countertopDeclutter: 'pomegranateND',
+    fridgeDeclutter: 'pomegranateND',
+    fuckItBucket: 'strawberryND',
+    laundryClothes: 'strawberryND',
+    laundryLinens: 'pomegranateND',
+    resetBulletin: 'pomegranateND',
+    tidyBathroomSink: 'pomegranateND',
+    wipeDownStovetop: 'strawberryND',
+    // other single-position tasks
+    changeWater: 'changeWater',
+    emptyDishwasher: 'emptyDishwasher',
+    scoopCatLitter: 'scoopCatLitter'
+};
+
+
 let draw;
 let taskElements = {};
 
@@ -80,40 +97,46 @@ function applyNotionData(data) {
 }
 
 function updateTaskStatus(taskName, status) {
-    const task = taskElements[taskName];
-    if (!task) {
-        console.log(`Task not found: ${taskName}`);
+    const taskType = TASK_CHARACTERS[taskName];
+    if (!taskType) {
+        console.log(`Task type not found for task name: ${taskName}`);
         return;
     }
 
-    if (Array.isArray(task)) {
-        // Handle multi-position characters (seedlingDONE, strawberryND, pomegranateND)
-        task.forEach((t, index) => {
+    const tasks = taskElements[taskType];
+    if (!tasks) {
+        console.log(`Tasks not found for task type: ${taskType}`);
+        return;
+    }
+
+    if (Array.isArray(tasks)) {
+        // Handle multi-position characters
+        tasks.forEach((t, index) => {
             if (status === 'done') {
                 t.image.hide();
-                console.log(`Hiding task image for ${taskName} at index ${index}`);
-                if (taskName === 'seedlingDONE') {
+                console.log(`Hiding ${taskType} image at index ${index}`);
+                if (taskType === 'seedlingDONE') {
                     taskElements.seedlingDONE[index].image.show();
-                    console.log(`Showing seedling for ${taskName} at index ${index}`);
+                    console.log(`Showing seedling at index ${index}`);
                 }
             } else {
                 t.image.show();
-                console.log(`Showing task image for ${taskName} at index ${index}`);
-                if (taskName === 'seedlingDONE') {
+                console.log(`Showing ${taskType} image at index ${index}`);
+                if (taskType === 'seedlingDONE') {
                     taskElements.seedlingDONE[index].image.hide();
-                    console.log(`Hiding seedling for ${taskName} at index ${index}`);
+                    console.log(`Hiding seedling at index ${index}`);
                 }
             }
         });
     } else {
         // Handle single-position characters (cats) and speech bubbles
         if (status === 'done') {
-            if (task.character) {
-                task.character.hide();
+            if (tasks.character) {
+                tasks.character.hide();
                 console.log(`Hiding character for ${taskName}`);
             }
-            if (task.speechBubble) {
-                task.speechBubble.hide();
+            if (tasks.speechBubble) {
+                tasks.speechBubble.hide();
                 console.log(`Hiding speech bubble for ${taskName}`);
             }
             const seedlingIndex = getSeedlingIndex(taskName);
@@ -122,12 +145,12 @@ function updateTaskStatus(taskName, status) {
                 console.log(`Showing seedling for ${taskName} at index ${seedlingIndex}`);
             }
         } else {
-            if (task.character) {
-                task.character.show();
+            if (tasks.character) {
+                tasks.character.show();
                 console.log(`Showing character for ${taskName}`);
             }
-            if (task.speechBubble) {
-                task.speechBubble.show();
+            if (tasks.speechBubble) {
+                tasks.speechBubble.show();
                 console.log(`Showing speech bubble for ${taskName}`);
             }
             const seedlingIndex = getSeedlingIndex(taskName);
@@ -138,8 +161,6 @@ function updateTaskStatus(taskName, status) {
         }
     }
 }
-
-
 
 function getSeedlingIndex(taskName) {
     const seedlingOrder = [
