@@ -29,8 +29,8 @@ module.exports = async (req, res) => {
     });
 
     const results = response.results.map(page => {
-      const names = page.properties.names.rich_text.length > 0 
-        ? page.properties.names.rich_text[0].plain_text 
+      const names = page.properties.Names.rich_text.length > 0 
+        ? page.properties.Names.rich_text[0].plain_text 
         : "No names";
       const redGreen = page.properties['red-green'].formula.string;
       
