@@ -46,30 +46,30 @@ const TASK_POSITIONS = {
         { x: 1043, y: 523, type: 'strawberryND', index: 1 },
         { x: 1077, y: 473, type: 'seedlingDONE', index: 4}
     ],
-    laundryClothes: [
-        { x: 1238, y: 753, type: 'bubbles', name: 'laundryClothes' },
-        { x: 1249, y: 817, type: 'strawberryND', index: 2 },
-        { x: 1267, y: 840, type: 'seedlingDONE', index: 5}
+    laundryLinens: [
+        { x: 1313, y: 753, type: 'bubbles', name: 'laundryLinens' },
+        { x: 1429, y: 810, type: 'pomegranateND', index: 0 },
+        { x: 1461, y: 781, type: 'seedlingDONE', index: 5}
     ],
     wipeDownStovetop: [
         { x: 551, y: 875, type: 'bubbles', name: 'wipeDownStovetop' },
-        { x: 542, y: 916, type: 'strawberryND', index: 3 },
+        { x: 542, y: 916, type: 'strawberryND', index: 2 },
         { x: 534, y: 869, type: 'seedlingDONE', index: 6}
     ],
     countertopDeclutter: [
         { x: 325, y: 877, type: 'bubbles', name: 'countertopDeclutter' },
-        { x: 320, y: 919, type: 'pomegranateND', index: 0 },
+        { x: 320, y: 919, type: 'pomegranateND', index: 1 },
         { x: 322, y: 887, type: 'seedlingDONE', index: 7}
     ],
     fridgeDeclutter: [
         { x: 890, y: 862, type: 'bubbles', name: 'fridgeDeclutter' },
-        { x: 999, y: 914, type: 'pomegranateND', index: 1 },
+        { x: 999, y: 914, type: 'pomegranateND', index: 2 },
         { x: 976, y: 906, type: 'seedlingDONE', index: 8}
     ],
-    laundryLinens: [
-        { x: 1313, y: 753, type: 'bubbles', name: 'laundryLinens' },
-        { x: 1429, y: 810, type: 'pomegranateND', index: 2 },
-        { x: 1461, y: 781, type: 'seedlingDONE', index: 9}
+    laundryClothes: [
+        { x: 1238, y: 753, type: 'bubbles', name: 'laundryClothes' },
+        { x: 1249, y: 817, type: 'strawberryND', index: 3 },
+        { x: 1267, y: 840, type: 'seedlingDONE', index: 9}
     ],
     resetBulletin: [
         { x: 1227, y: 377, type: 'bubbles', name: 'resetBulletin' },
