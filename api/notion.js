@@ -10,13 +10,9 @@ const databaseId = process.env.NOTION_DATABASE_ID || '3c7f9524d0b4437a9f2dbe34ea
 module.exports = async (req, res) => {
   console.log(`Received request: ${req.method} ${req.url}`);
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
   res.setHeader('Access-Control-Allow-Origin', '*');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed, use POST' });
