@@ -29,14 +29,21 @@ module.exports = async (req, res) => {
     });
 
     const results = response.results.map(page => {
-      const names = page.properties.Names.rich_text.length > 0 
-        ? page.properties.Names.rich_text[0].plain_text 
-        : "No names";
-      const redGreen = page.properties['red-green'].formula.string;
-      
+  const title = page.properties.title.title.length > 0 
+    ? page.properties.title.title[0].text.content 
+    : "Untitled";
+  
+  const redGreen = page.properties['red-green'].formula.string;
+
+  // Extract the task property
+  const name = page.properties.Name.rich_text.length > 0 
+    ? page.properties.Name.rich_text[0].text.content 
+    : "No task";
+
       return {
-        names,
-        redGreen,
+        name: name,
+        redGreen: redGreen,
+        title: title
       };
     });
     // Logging and sending the JSON response

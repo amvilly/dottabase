@@ -74,12 +74,12 @@ let taskElements = {};
 function applyNotionData(data) {
     data.forEach(item => {
         const status = item.redGreen === 'done' ? 'done' : 'needsDoing';
-        updateTaskStatus(item.names, status);
+        updateTaskStatus(item.name, status);
     });
 }
 
-function updateTaskStatus(taskNames, status) {
-    const task = taskElements[taskNames];
+function updateTaskStatus(taskName, status) {
+    const task = taskElements[taskName];
     if (!task) return;
 
     if (Array.isArray(task)) {
@@ -115,13 +115,13 @@ function updateTaskStatus(taskNames, status) {
     }
 }
 
-function getSeedlingIndex(taskNames) {
+function getSeedlingIndex(taskName) {
     const seedlingOrder = [
         'changeWater', 'emptyDishwasher', 'scoopCatLitter', 'airOutMattress', 
         'countertopDeclutter', 'fridgeDeclutter', 'fuckItBucket', 'laundryClothes', 
         'laundryLinens', 'resetBulletin', 'tidyBathroomSink', 'wipeDownStovetop'
     ];
-    return seedlingOrder.indexOf(taskNames);
+    return seedlingOrder.indexOf(taskName);
 }
 
 async function fetchData() {
@@ -159,9 +159,9 @@ async function init() {
 
         console.log('Setting default task statuses...');
         // Set all tasks to "needsDoing" by default
-        Object.keys(TASK_POSITIONS).forEach(taskNames => {
-            if (taskNames !== 'seedlingDONE') {
-                updateTaskStatus(taskNamse, 'needsDoing');
+        Object.keys(TASK_POSITIONS).forEach(taskName => {
+            if (taskName !== 'seedlingDONE') {
+                updateTaskStatus(taskName, 'needsDoing');
             }
         });
 
@@ -209,31 +209,31 @@ function loadTaskIcons() {
     };
 
     // First, load all speech bubbles
-    Object.keys(TASK_POSITIONS).forEach(taskNames => {
-        if (Array.isArray(TASK_POSITIONS[taskNames])) return; // Skip multi-position characters
+    Object.keys(TASK_POSITIONS).forEach(taskName => {
+        if (Array.isArray(TASK_POSITIONS[taskName])) return; // Skip multi-position characters
 
-        const pos = TASK_POSITIONS[taskNames];
-        const speechBubble = draw.image(SVG_URLS.bubbles[taskNames])
+        const pos = TASK_POSITIONS[taskName];
+        const speechBubble = draw.image(SVG_URLS.bubbles[taskName])
             .size(200, 65)
             .move(pos.x, pos.y);
-        console.log(`${taskNames} speech bubble loaded at x: ${pos.x}, y: ${pos.y}`);
+        console.log(`${taskName} speech bubble loaded at x: ${pos.x}, y: ${pos.y}`);
         
-        if (!taskElements[taskNames]) {
-            taskElements[taskNames] = {};
+        if (!taskElements[taskName]) {
+            taskElements[taskName] = {};
         }
-        taskElements[taskNames].speechBubble = speechBubble;
+        taskElements[taskName].speechBubble = speechBubble;
     });
 
     // Then, load cat characters
-    ['changeWater', 'emptyDishwasher', 'scoopCatLitter'].forEach(taskNames => {
-        const pos = TASK_POSITIONS[taskNames];
-        const size = characterSizes[taskNames];
-        const character = draw.image(SVG_URLS.characters[taskNames])
+    ['changeWater', 'emptyDishwasher', 'scoopCatLitter'].forEach(taskName => {
+        const pos = TASK_POSITIONS[taskName];
+        const size = characterSizes[taskName];
+        const character = draw.image(SVG_URLS.characters[taskName])
             .size(size.width, size.height)
             .move(pos.x, pos.y);
-        console.log(`${taskNames} character loaded at x: ${pos.x}, y: ${pos.y}`);
+        console.log(`${taskName} character loaded at x: ${pos.x}, y: ${pos.y}`);
         
-        taskElements[taskNames].character = character;
+        taskElements[taskName].character = character;
     });
 
     // Load multi-position characters (fruits and seedlings)
