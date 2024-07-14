@@ -79,7 +79,6 @@ function applyNotionData(data) {
     });
 }
 
-
 function updateTaskStatus(taskName, status) {
     const task = taskElements[taskName];
     if (!task) {
@@ -93,15 +92,17 @@ function updateTaskStatus(taskName, status) {
             if (status === 'done') {
                 t.image.hide();
                 console.log(`Hiding task image for ${taskName} at index ${index}`);
-                taskElements.seedlingDONE[index].image.show();
-                console.log(`Showing seedling for ${taskName} at index ${index}`);
-            } else {
-                if (taskName !== 'seedlingDONE') {
-                    t.image.show();
-                    console.log(`Showing task image for ${taskName} at index ${index}`);
+                if (taskName === 'seedlingDONE') {
+                    taskElements.seedlingDONE[index].image.show();
+                    console.log(`Showing seedling for ${taskName} at index ${index}`);
                 }
-                taskElements.seedlingDONE[index].image.hide();
-                console.log(`Hiding seedling for ${taskName} at index ${index}`);
+            } else {
+                t.image.show();
+                console.log(`Showing task image for ${taskName} at index ${index}`);
+                if (taskName === 'seedlingDONE') {
+                    taskElements.seedlingDONE[index].image.hide();
+                    console.log(`Hiding seedling for ${taskName} at index ${index}`);
+                }
             }
         });
     } else {
@@ -111,8 +112,10 @@ function updateTaskStatus(taskName, status) {
                 task.character.hide();
                 console.log(`Hiding character for ${taskName}`);
             }
-            task.speechBubble.hide();
-            console.log(`Hiding speech bubble for ${taskName}`);
+            if (task.speechBubble) {
+                task.speechBubble.hide();
+                console.log(`Hiding speech bubble for ${taskName}`);
+            }
             const seedlingIndex = getSeedlingIndex(taskName);
             if (seedlingIndex !== -1) {
                 taskElements.seedlingDONE[seedlingIndex].image.show();
@@ -123,8 +126,10 @@ function updateTaskStatus(taskName, status) {
                 task.character.show();
                 console.log(`Showing character for ${taskName}`);
             }
-            task.speechBubble.show();
-            console.log(`Showing speech bubble for ${taskName}`);
+            if (task.speechBubble) {
+                task.speechBubble.show();
+                console.log(`Showing speech bubble for ${taskName}`);
+            }
             const seedlingIndex = getSeedlingIndex(taskName);
             if (seedlingIndex !== -1) {
                 taskElements.seedlingDONE[seedlingIndex].image.hide();
@@ -133,6 +138,7 @@ function updateTaskStatus(taskName, status) {
         }
     }
 }
+
 
 
 function getSeedlingIndex(taskName) {
