@@ -16,38 +16,21 @@ body, html {
 }
 
 #main-svg {
-    width: 1920px;
-    height: 1080px;
+    width: 100%;
+    height: auto;
 }
 
 .responsive-container {
-    width: 1920px;
-    height: 1080px;
-    transform: scale(1);
-    transform-origin: top left;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Adjust scaling for smaller screens */
 @media (max-width: 1920px) {
     .responsive-container {
-        transform: scale(0.9); /* Adjust the scale as needed */
-    }
-}
-
-@media (max-width: 1700px) {
-    .responsive-container {
-        transform: scale(0.8);
-    }
-}
-
-@media (max-width: 1500px) {
-    .responsive-container {
-        transform: scale(0.7);
-    }
-}
-
-@media (max-width: 1300px) {
-    .responsive-container {
-        transform: scale(0.6);
+        width: 100%;
+        height: 100%;
     }
 }
