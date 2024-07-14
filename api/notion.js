@@ -29,13 +29,13 @@ module.exports = async (req, res) => {
     });
 
     const results = response.results.map(page => {
-      const task = page.properties.task.rich_text.length > 0 
-        ? page.properties.task.rich_text[0].plain_text 
-        : "No task";
+      const names = page.properties.names.rich_text.length > 0 
+        ? page.properties.names.rich_text[0].plain_text 
+        : "No names";
       const redGreen = page.properties['red-green'].formula.string;
       
       return {
-        task,
+        names,
         redGreen,
       };
     });
