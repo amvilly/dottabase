@@ -55,12 +55,12 @@ const TASK_POSITIONS = {
     wipeDownStovetop: [
         { x: 551, y: 875, type: 'bubbles', name: 'wipeDownStovetop' },
         { x: 542, y: 916, type: 'strawberryND', index: 3 },
-        { x: 322, y: 887, type: 'seedlingDONE', index: 6}
+        { x: 534, y: 869, type: 'seedlingDONE', index: 6}
     ],
     countertopDeclutter: [
         { x: 325, y: 877, type: 'bubbles', name: 'countertopDeclutter' },
         { x: 320, y: 919, type: 'pomegranateND', index: 0 },
-        { x: 534, y: 869, type: 'seedlingDONE', index: 7}
+        { x: 322, y: 887, type: 'seedlingDONE', index: 7}
     ],
     fridgeDeclutter: [
         { x: 890, y: 862, type: 'bubbles', name: 'fridgeDeclutter' },
