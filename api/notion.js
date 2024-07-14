@@ -24,11 +24,7 @@ module.exports = async (req, res) => {
 
   try {
     // Set no-cache headers
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    res.setHeader('Surrogate-Control', 'no-store');
-
+    res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
     // Querying the Notion database
     console.log('Querying database...');
     const response = await notion.databases.query({

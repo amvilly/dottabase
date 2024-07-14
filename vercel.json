@@ -2,30 +2,38 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/*.js",
+      "src": "api/notion.js",
       "use": "@vercel/node"
     },
     {
-      "src": "*.html",
+      "src": "index.html",
       "use": "@vercel/static"
     },
     {
-      "src": "scripts/*.js",
+      "src": "scripts/main.js",
       "use": "@vercel/static"
     },
     {
-      "src": "styles/*.css",
+      "src": "styles/main.css",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/api/notion",
+      "dest": "/api/notion.js"
     },
     {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/scripts/main.js",
+      "dest": "/scripts/main.js"
+    },
+    {
+      "src": "/styles/main.css",
+      "dest": "/styles/main.css"
     }
   ]
 }
