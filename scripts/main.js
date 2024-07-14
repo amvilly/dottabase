@@ -24,6 +24,18 @@ const SVG_URLS = {
 };
 
 const TASK_POSITIONS = {
+    changeWater: { x: 691, y: 439 },
+    emptyDishwasher: { x: 111, y: 770 },
+    scoopCatLitter: { x: 614, y: 647 },
+    airOutMattress: { x: 1500, y: 380, type: 'strawberryND', index: 0 },
+    fuckItBucket: { x: 1046, y: 478, type: 'strawberryND', index: 1 },
+    laundryClothes: { x: 1249, y: 817, type: 'strawberryND', index: 2 },
+    wipeDownStovetop: { x: 542, y: 916, type: 'strawberryND', index: 3 },
+    countertopDeclutter: { x: 320, y: 919, type: 'pomegranateND', index: 0 },
+    fridgeDeclutter: { x: 999, y: 914, type: 'pomegranateND', index: 1 },
+    laundryLinens: { x: 1429, y: 810, type: 'pomegranateND', index: 2 },
+    resetBulletin: { x: 1313, y: 423, type: 'pomegranateND', index: 3 },
+    tidyBathroomSink: { x: 253, y: 505, type: 'pomegranateND', index: 4 },
     seedlingDONE: [
         { x: 783, y: 482 },  // change water
         { x: 164, y: 737 },  // empty dish
@@ -38,48 +50,6 @@ const TASK_POSITIONS = {
         { x: 234, y: 487 },  // tidy bathroom sink
         { x: 322, y: 887 },  // wipe down stovetop
     ],
-    strawberryND: [
-        { x: 1620, y: 440 }, // air out mattress
-        { x: 1043, y: 523 },  // fuck it bucket
-        { x: 1249, y: 817 },  // laundry clothes
-        { x: 542, y: 916 }, // stovetops
-    ],
-    pomegranateND: [
-        { x: 320, y: 919 },  // countertop
-        { x: 999, y: 914 }, // fridge declutter
-        { x: 1429, y: 810 },  // laundry linens
-        { x: 1313, y: 423 },  // reset bulletin
-        { x: 253, y: 505 },  // tidy bathroom sink
-    ],
-    // cats with bubbles
-    changeWater: { x: 691, y: 439 },
-    emptyDishwasher: { x: 111, y: 770 },
-    scoopCatLitter: { x: 614, y: 647 },
-    // bubbles only
-    airOutMattress: { x: 1500, y: 380 },
-    countertopDeclutter: { x: 325, y: 877 },
-    fridgeDeclutter: { x: 890, y: 862 },
-    fuckItBucket: { x: 1046, y: 478 },
-    laundryClothes: { x: 1238, y: 753 },
-    laundryLinens: { x: 1313, y: 753 },
-    resetBulletin: { x: 1227, y: 377 },
-    tidyBathroomSink: { x: 263, y: 468 },
-    wipeDownStovetop: { x: 551, y: 875 },
-};
-
-const TASK_CHARACTERS = {
-    changeWater: 'changeWater',
-    emptyDishwasher: 'emptyDishwasher',
-    scoopCatLitter: 'scoopCatLitter',
-    airOutMattress: 'strawberryND',
-    countertopDeclutter: 'pomegranateND',
-    fridgeDeclutter: 'pomegranateND',
-    fuckItBucket: 'strawberryND',
-    laundryClothes: 'strawberryND',
-    laundryLinens: 'pomegranateND',
-    resetBulletin: 'pomegranateND',
-    tidyBathroomSink: 'pomegranateND',
-    wipeDownStovetop: 'strawberryND'
 };
 
 let draw;
@@ -88,54 +58,50 @@ let taskElements = {};
 // Define helper functions here
 
 function updateTaskStatus(taskName, status) {
-    const taskType = TASK_CHARACTERS[taskName];
+    const taskType = TASK_POSITIONS[taskName];
     if (!taskType) {
         console.log(`Task type not found for task name: ${taskName}`);
         return;
     }
 
-    const tasks = taskElements[taskType];
-    if (!tasks) {
-        console.log(`Tasks not found for task type: ${taskType}`);
-        return;
-    }
-
-    if (Array.isArray(tasks)) {
+    if (Array.isArray(taskType)) {
         // Handle multi-position characters
-        tasks.forEach((t, index) => {
+        taskType.forEach((pos, index) => {
+            const element = taskElements[taskName][index];
             if (status === 'done') {
-                t.image.hide();
-                console.log(`Hiding ${taskType} image at index ${index} for task ${taskName}`);
+                element.image.hide();
+                console.log(`Hiding ${taskName} image at index ${index}`);
                 if (taskElements[taskName] && taskElements[taskName].speechBubble) {
                     taskElements[taskName].speechBubble.hide();
                     console.log(`Hiding speech bubble for ${taskName}`);
                 }
-                if (taskType === 'seedlingDONE') {
+                if (taskName === 'seedlingDONE') {
                     taskElements.seedlingDONE[index].image.show();
-                    console.log(`Showing seedling at index ${index} for task ${taskName}`);
+                    console.log(`Showing seedling at index ${index}`);
                 }
             } else {
-                t.image.show();
-                console.log(`Showing ${taskType} image at index ${index} for task ${taskName}`);
+                element.image.show();
+                console.log(`Showing ${taskName} image at index ${index}`);
                 if (taskElements[taskName] && taskElements[taskName].speechBubble) {
                     taskElements[taskName].speechBubble.show();
                     console.log(`Showing speech bubble for ${taskName}`);
                 }
-                if (taskType === 'seedlingDONE') {
+                if (taskName === 'seedlingDONE') {
                     taskElements.seedlingDONE[index].image.hide();
-                    console.log(`Hiding seedling at index ${index} for task ${taskName}`);
+                    console.log(`Hiding seedling at index ${index}`);
                 }
             }
         });
     } else {
         // Handle single-position characters (cats) and speech bubbles
+        const element = taskElements[taskName];
         if (status === 'done') {
-            if (tasks.character) {
-                tasks.character.hide();
+            if (element.character) {
+                element.character.hide();
                 console.log(`Hiding character for ${taskName}`);
             }
-            if (tasks.speechBubble) {
-                tasks.speechBubble.hide();
+            if (element.speechBubble) {
+                element.speechBubble.hide();
                 console.log(`Hiding speech bubble for ${taskName}`);
             }
             const seedlingIndex = getSeedlingIndex(taskName);
@@ -144,12 +110,12 @@ function updateTaskStatus(taskName, status) {
                 console.log(`Showing seedling for ${taskName} at index ${seedlingIndex}`);
             }
         } else {
-            if (tasks.character) {
-                tasks.character.show();
+            if (element.character) {
+                element.character.show();
                 console.log(`Showing character for ${taskName}`);
             }
-            if (tasks.speechBubble) {
-                tasks.speechBubble.show();
+            if (element.speechBubble) {
+                element.speechBubble.show();
                 console.log(`Showing speech bubble for ${taskName}`);
             }
             const seedlingIndex = getSeedlingIndex(taskName);
