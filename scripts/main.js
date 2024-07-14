@@ -193,7 +193,7 @@ function loadTaskIcons() {
 
 async function fetchData() {
     try {
-      const response = await fetch('/api/notion', {
+      const response = await fetch('api/notion', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
