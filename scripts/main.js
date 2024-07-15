@@ -165,6 +165,21 @@ async function fetchData() {
     }
 }
 
+async function refreshData() {
+    console.log('Refreshing data...');
+    try {
+        const notionData = await fetchData();
+        if (notionData) {
+            console.log('Applying refreshed data...');
+            applyNotionData(notionData);
+        } else {
+            console.log('No data received during refresh');
+        }
+    } catch (error) {
+        console.error('Error during data refresh:', error);
+    }
+}
+
 // Define core functions here
 async function init() {
     console.log('Initializing...');
@@ -196,10 +211,14 @@ async function init() {
             console.log('No Notion data received');
         }
         console.log('Initialization complete');
+
+        // Set up the interval to refresh data every 5 minutes (300000 ms)
+        setInterval(refreshData, 300000); // 5 minutes in milliseconds
     } catch (error) {
         console.error('Error during initialization:', error);
     }
 }
+
 
 function loadBackground() {
     console.log('Loading background...');
