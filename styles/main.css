@@ -30,7 +30,7 @@ body, html {
     position: absolute;
     top: 113px;
     left: 209px;
-    width: 400px;  /* Adjust width as needed */
+    width: 380px;  /* Adjust width as needed */
     height: 247px; /* Adjust height as needed */
     border: none;
     z-index: 1000; /* Ensure the clock widget is on top */
