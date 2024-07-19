@@ -28,8 +28,8 @@ body, html {
 
 #clock-widget {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 160px;
+    left: 200px;
     width: 200px;  /* Adjust width as needed */
     height: 100px; /* Adjust height as needed */
     border: none;
