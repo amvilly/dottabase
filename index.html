@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Tracker</title>
-    <link rel="stylesheet" href="styles/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <title>DOTTA</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.1.2/svg.min.js"></script>
 </head>
 <body>
-    <div id="container">
-        <svg id="svgCanvas" width="1920" height="1080"></svg>
-        <div id="clock-widget-container">
-            <iframe src="https://widgetbox.app/embed/clock/digital/CQTzumT2VuAbwn7mfkDwH6?flag=true" id="clock-widget" frameborder="0" scrolling="no"></iframe>
-        </div>
+  <div id="app">
+    <div class="responsive-container">
+      <iframe src="https://widgetbox.app/embed/clock/digital/CQTzumT2VuAbwn7mfkDwH6?flag=true" id="clock-widget"></iframe>
+      <svg id="main-svg" viewBox="200 100 1920 1080"></svg>
     </div>
-    <script src="scripts/main.js"></script>
-</body
+  </div>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
