@@ -30,8 +30,8 @@ body, html {
     position: absolute;
     top: 10vh;
     left: 12vw;
-    width: 15vw;  /* Width set relative to viewport width */
-    height: 17vh; /* Height set relative to viewport height */
+    width: 21vw;  /* Width set relative to viewport width */
+    height: 22vh; /* Height set relative to viewport height */
     border: none;
     z-index: 1000; /* Ensure the clock widget is on top */
 }
@@ -44,8 +44,8 @@ body, html {
     }
 
     #clock-widget {
-        width: 15vw;  /* Adjusted width relative to viewport */
-        height: 17vh;  /* Adjusted height relative to viewport */
+        width: 21vw;  /* Adjusted width relative to viewport */
+        height: 22vh;  /* Adjusted height relative to viewport */
     }
 }
 
@@ -57,15 +57,15 @@ body, html {
     }
 
     #clock-widget {
-        width: 15vw;  /* Adjusted width relative to viewport */
-        height: 17vh; /* Adjusted height relative to viewport */
+        width: 21vw;  /* Adjusted width relative to viewport */
+        height: 22vh; /* Adjusted height relative to viewport */
     }
 }
 
 /* Media query for even larger screens */
 @media (min-width: 2560px) and (min-height: 1440px) {
     #clock-widget {
-        width: 15vw;  /* Adjusted width relative to viewport */
-        height: 17vh; /* Adjusted height relative to viewport */
+        width: 21vw;  /* Adjusted width relative to viewport */
+        height: 22vh; /* Adjusted height relative to viewport */
     }
 }
