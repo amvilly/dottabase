@@ -31,7 +31,7 @@ body, html {
     top: 10vh;
     left: 12vw;
     width: 15vw;  /* Width set relative to viewport width */
-    height: 17vh; /* Height set relative to viewport height */
+    height: 20vh; /* Height set relative to viewport height */
     border: none;
     z-index: 1000; /* Ensure the clock widget is on top */
 }
