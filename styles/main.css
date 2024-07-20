@@ -62,8 +62,8 @@ body, html {
     }
 }
 
-/* Media query for even larger screens */
-@media (min-width: 2560px) and (min-height: 1440px) {
+/* Media query for mac 13-inch */
+@media (min-width: 2560px) and (min-height: 1600px) {
     #clock-widget {
         width: 21vw;  /* Adjusted width relative to viewport */
         height: 22vh; /* Adjusted height relative to viewport */
