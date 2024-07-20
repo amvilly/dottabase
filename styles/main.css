@@ -28,10 +28,10 @@ body, html {
 
 #clock-widget {
     position: absolute;
-    top: 113px;
-    left: 209px;
-    width: 355px;  /* Adjust width as needed */
-    height: 260px; /* Adjust height as needed */
+    top: 20px;
+    left: 20px;
+    width: 200px;  /* Default width */
+    height: 100px; /* Default height */
     border: none;
     z-index: 1000; /* Ensure the clock widget is on top */
 }
@@ -42,12 +42,30 @@ body, html {
         width: 1680px;
         height: 1050px;
     }
+
+    #clock-widget {
+        width: 150px;  /* Adjusted width */
+        height: 75px;  /* Adjusted height */
+    }
 }
 
 /* Media query for 1920x1080 */
-@media (max-width: 1920px) and (max-height: 1080px) {
+@media (min-width: 1920px) and (min-height: 1080px) {
     #main-svg {
         width: 1920px;
         height: 1080px;
+    }
+
+    #clock-widget {
+        width: 300px;  /* Adjusted width for larger screens */
+        height: 150px; /* Adjusted height for larger screens */
+    }
+}
+
+/* Media query for even larger screens */
+@media (min-width: 2560px) and (min-height: 1440px) {
+    #clock-widget {
+        width: 400px;  /* Adjusted width for even larger screens */
+        height: 200px; /* Adjusted height for even larger screens */
     }
 }
