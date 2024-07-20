@@ -29,9 +29,9 @@ body, html {
 #clock-widget {
     position: absolute;
     top: 10vh;
-    left: 20vw;
+    left: 12vw;
     width: 15vw;  /* Width set relative to viewport width */
-    height: 10vh; /* Height set relative to viewport height */
+    height: 17vh; /* Height set relative to viewport height */
     border: none;
     z-index: 1000; /* Ensure the clock widget is on top */
 }
