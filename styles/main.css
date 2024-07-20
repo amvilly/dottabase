@@ -30,7 +30,7 @@ body, html {
     position: absolute;
     top: 10vh;
     left: 12vw;
-    width: 21vw;  /* Width set relative to viewport width */
+    width: 24vw;  /* Width set relative to viewport width */
     height: 22vh; /* Height set relative to viewport height */
     border: none;
     z-index: 1000; /* Ensure the clock widget is on top */
@@ -44,7 +44,7 @@ body, html {
     }
 
     #clock-widget {
-        width: 21vw;  /* Adjusted width relative to viewport */
+        width: 24vw;  /* Adjusted width relative to viewport */
         height: 22vh;  /* Adjusted height relative to viewport */
     }
 }
@@ -57,7 +57,7 @@ body, html {
     }
 
     #clock-widget {
-        width: 21vw;  /* Adjusted width relative to viewport */
+        width: 24vw;  /* Adjusted width relative to viewport */
         height: 22vh; /* Adjusted height relative to viewport */
     }
 }
@@ -65,7 +65,7 @@ body, html {
 /* Media query for mac 13-inch */
 @media (min-width: 2560px) and (min-height: 1600px) {
     #clock-widget {
-        width: 21vw;  /* Adjusted width relative to viewport */
+        width: 24vw;  /* Adjusted width relative to viewport */
         height: 22vh; /* Adjusted height relative to viewport */
     }
 }
